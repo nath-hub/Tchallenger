@@ -37,9 +37,15 @@ return [
         'redirect' => 'https://www.backend.tchallenger.com/public/facebook/callback'
     ],
 
-    'google' => [
-        'client_id' => '359803378024-a43f72j8hgcko04g90ivg4b4ppm5vst7.apps.googleusercontent.com',
-        'client_secret' => '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',
+    // 'google' => [
+    //     'client_id' => '359803378024-kgh1datd8j0q3glb4cj7ihbr3g0har3c.apps.googleusercontent.com',
+    //     'client_secret' => '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',
+    //     'redirect' => 'http://127.0.0.1:8000/api/callback/google',
+    //   ], 
+
+      'google' => [
+        'client_id' => '359803378024-ai9mu41fh96kjksgac7v1audmok6o144.apps.googleusercontent.com',
+        'client_secret' => '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',
         'redirect' => 'https://www.backend.tchallenger.com/public/api/callback/google',
       ], 
 
