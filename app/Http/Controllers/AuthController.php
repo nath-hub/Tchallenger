@@ -29,6 +29,7 @@ class AuthController extends Controller
             if ($user->email_verified_at === null) {
                 return response()->json([
                     'code' => 401,
+
                     'error' => 'Account not validate in email',
                     'message' => 'Account is not validate, verify your email',
                 ], 401);
@@ -129,7 +130,7 @@ class AuthController extends Controller
     {
         try {
 
-            $user = Socialite::driver('google')->user();
+            $user = Socialite::driver('google')->stateless()->user();
 
             $finduser = User::where('google_id', $user->id)->first();
 
@@ -137,23 +138,43 @@ class AuthController extends Controller
 
                 Auth::login($finduser);
 
-                return redirect('/home');
             } else {
                 $newUser = User::create([
-                    'name' => $user->name,
+                    'login' => $user->name,
                     'email' => $user->email,
                     'google_id' => $user->id,
+                    'email_verified_at' => Carbon::now(),
+                    'derniereConnexion' => Carbon::now(),
                     'password' => encrypt('my-google')
+
                 ]);
 
                 Auth::login($newUser);
 
-                return redirect('/home');
             }
+
+            return response()->json([
+                'code' => 200,
+                'data' => [
+                    'token' => [
+                        'type' => 'Bearer',
+                        'access_token' => $user->token
+                    ],
+                    'user' => [
+
+                        'phone' => $user->phone,
+                        'email' => $user->email,
+                        'avatar' => $user->avatar,
+                        'login' => $user->name,
+                    ]
+                ]
+            ]);
         } catch (Exception $e) {
             dd($e->getMessage());
         }
     }
+
+    
 
     public function logout(Request $request, User $user)
     {
