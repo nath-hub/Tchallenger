@@ -155,7 +155,8 @@ return [
     |
     */
 
-    'domain' => env('SESSION_DOMAIN'),
+    // 'domain' => env('SESSION_DOMAIN'),
+    'domain' => 'https://www.backend.tchallenger.com/public/facebook/callback',
 
     /*
     |--------------------------------------------------------------------------

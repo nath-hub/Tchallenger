@@ -19,6 +19,8 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('phone')->unique();
             $table->boolean('active')->nullable()->default(0);
+            $table->string('facebook_id')->nullable();
+            $table->string('google_id')->nullable();
             $table->date('derniereConnexion')->nullable();
             $table->string('avatar')->nullable();
             $table->integer('code')->nullable();

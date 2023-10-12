@@ -60,9 +60,13 @@
                     </div>
 
                     <div>
-                        <button>
-                            <a href="{{ url('/api/login/facebook/callback') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Dashboard</a>
-                        </button>
+                        <a href="api/auth" class="btn btn-facebook btn-user btn-block">
+                            <i class="fab fa-facebook-f fa-fw"></i>
+                            Login with Facebook
+                         </a>
+                         <a href="api/auth/google" style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2">
+                            <strong>Google Login</strong>
+                          </a> 
                     </div>
 
                     <div class="ml-4 text-center text-sm text-gray-500 sm:text-right sm:ml-0">

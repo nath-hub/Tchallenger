@@ -3,12 +3,13 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Requests\AuthRequest;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
-use Laravel\Socialite\Facades\Socialite;
+use Socialite;
 
 class AuthController extends Controller
 {
@@ -68,27 +69,129 @@ class AuthController extends Controller
     {
     }
 
-    public function LoginWithFacebook(Request $request)
+    // public function LoginWithFacebook(Request $request)
+    // {
+
+    //     try {
+    //         $user = Socialite::driver('facebook')->redirect()->user();
+     
+    //         $saveUser = User::updateOrCreate([
+    //             'facebook_id' => $user->getId(),
+    //         ],[
+    //             'name' => $user->getName(),
+    //             'email' => $user->getEmail(),
+    //             'password' => Hash::make($user->getName().'@'.$user->getId())
+    //              ]);
+     
+    //         Auth::loginUsingId($saveUser->id);
+     
+    //         return redirect()->route('home');
+    //         } catch (\Throwable $th) {
+    //            throw $th;
+    //         }
+    //     }
+
+    public function loginUsingFacebook()
+    {
+       return Socialite::driver('facebook')->redirect();
+    }
+   
+    public function callbackFromFacebook()
+    {
+     try {
+
+          $user = Socialite::driver('facebook')->stateless()->user();
+   
+          $saveUser = User::updateOrCreate([
+              'facebook_id' => $user->getId(),
+          ],[
+              'name' => $user->getName(),
+              'email' => $user->getEmail(),
+              'password' => Hash::make($user->getName().'@'.$user->getId())
+               ]);
+   
+          Auth::loginUsingId($saveUser->id);
+   
+          return redirect()->route('home');
+          } catch (\Throwable $th) {
+             throw $th;
+          }
+      }
+
+
+      public function redirectToGoogle()
+      {
+          return Socialite::driver('google')->redirect();
+      }
+    
+
+      public function handleCallback()
     {
         try {
-            $user = Socialite::driver('facebook')->user();
      
-            $saveUser = User::updateOrCreate([
-                'facebook_id' => $user->getId(),
-            ],[
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'password' => Hash::make($user->getName().'@'.$user->getId())
-                 ]);
+            $user = Socialite::driver('google')->stateless()->user();
+      
+            $finduser = User::where('google_id', $user->id)->first();
+      
+            if($finduser){
+      
+                Auth::login($finduser);
+
+                $token = $user->createToken('API TOKEN');
      
-            Auth::loginUsingId($saveUser->id);
+                return response()->json([
+                    'code' => 200,
+                    'data' => [
+                        'token' => [
+                            'type' => 'Bearer',
+                            'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
+                            'access_token' => $token->plainTextToken
+                        ],
+                        'user' => [
+
+                            'phone' => $user->phone,
+                            'email' => $user->email,
+                            'avatar' => $user->avatar,
+                            'login' => $user->login,
+                        ]
+                    ]
+                ]);
+      
+            }else{
+                $newUser = User::create([
+                    'login' => $user->name,
+                    'email' => $user->email,
+                    'google_id'=> $user->id,
+                    'password' => encrypt('my-google')
+                ]);
      
-            return redirect()->route('home');
-            } catch (\Throwable $th) {
-               throw $th;
+                Auth::login($newUser);
+
+                $token = $user->createToken('API TOKEN');
+      
+                return response()->json([
+                    'code' => 200,
+                    'data' => [
+                        'token' => [
+                            'type' => 'Bearer',
+                            'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
+                            'access_token' => $token->plainTextToken
+                        ],
+                        'user' => [
+
+                            'phone' => $user->phone,
+                            'email' => $user->email,
+                            'avatar' => $user->avatar,
+                            'login' => $user->login,
+                        ]
+                    ]
+                ]);
             }
+     
+        } catch (Exception $e) {
+            dd($e->getMessage());
         }
-    
+    }
 
     public function logout(Request $request, User $user)
     {
