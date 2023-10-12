@@ -74,7 +74,7 @@ class AuthController extends Controller
 
     //     try {
     //         $user = Socialite::driver('facebook')->redirect()->user();
-     
+
     //         $saveUser = User::updateOrCreate([
     //             'facebook_id' => $user->getId(),
     //         ],[
@@ -82,9 +82,9 @@ class AuthController extends Controller
     //             'email' => $user->getEmail(),
     //             'password' => Hash::make($user->getName().'@'.$user->getId())
     //              ]);
-     
+
     //         Auth::loginUsingId($saveUser->id);
-     
+
     //         return redirect()->route('home');
     //         } catch (\Throwable $th) {
     //            throw $th;
@@ -93,101 +93,63 @@ class AuthController extends Controller
 
     public function loginUsingFacebook()
     {
-       return Socialite::driver('facebook')->redirect();
+        return Socialite::driver('facebook')->redirect();
     }
-   
+
     public function callbackFromFacebook()
     {
-     try {
+        try {
 
-          $user = Socialite::driver('facebook')->stateless()->user();
-   
-          $saveUser = User::updateOrCreate([
-              'facebook_id' => $user->getId(),
-          ],[
-              'name' => $user->getName(),
-              'email' => $user->getEmail(),
-              'password' => Hash::make($user->getName().'@'.$user->getId())
-               ]);
-   
-          Auth::loginUsingId($saveUser->id);
-   
-          return redirect()->route('home');
-          } catch (\Throwable $th) {
-             throw $th;
-          }
-      }
+            $user = Socialite::driver('facebook')->stateless()->user();
+
+            $saveUser = User::updateOrCreate([
+                'facebook_id' => $user->getId(),
+            ], [
+                'name' => $user->getName(),
+                'email' => $user->getEmail(),
+                'password' => Hash::make($user->getName() . '@' . $user->getId())
+            ]);
+
+            Auth::loginUsingId($saveUser->id);
+
+            return redirect()->route('home');
+        } catch (\Throwable $th) {
+            throw $th;
+        }
+    }
 
 
-      public function redirectToGoogle()
-      {
-          return Socialite::driver('google')->redirect();
-      }
-    
+    public function redirectToGoogle()
+    {
+        return Socialite::driver('google')->redirect();
+    }
 
-      public function handleCallback()
+
+    public function handleCallback()
     {
         try {
-     
+
             $user = Socialite::driver('google')->user();
-      
+
             $finduser = User::where('google_id', $user->id)->first();
-      
-            if($finduser){
-      
+
+            if ($finduser) {
+
                 Auth::login($finduser);
 
-                $token = $user->createToken('API TOKEN');
-     
-                return response()->json([
-                    'code' => 200,
-                    'data' => [
-                        'token' => [
-                            'type' => 'Bearer',
-                            'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
-                            'access_token' => $token->plainTextToken
-                        ],
-                        'user' => [
-
-                            'phone' => $user->phone,
-                            'email' => $user->email,
-                            'avatar' => $user->avatar,
-                            'login' => $user->login,
-                        ]
-                    ]
-                ]);
-      
-            }else{
+                return redirect('/home');
+            } else {
                 $newUser = User::create([
-                    'login' => $user->name,
+                    'name' => $user->name,
                     'email' => $user->email,
-                    'google_id'=> $user->id,
+                    'google_id' => $user->id,
                     'password' => encrypt('my-google')
                 ]);
-     
+
                 Auth::login($newUser);
 
-                $token = $user->createToken('API TOKEN');
-      
-                return response()->json([
-                    'code' => 200,
-                    'data' => [
-                        'token' => [
-                            'type' => 'Bearer',
-                            'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
-                            'access_token' => $token->plainTextToken
-                        ],
-                        'user' => [
-
-                            'phone' => $user->phone,
-                            'email' => $user->email,
-                            'avatar' => $user->avatar,
-                            'login' => $user->login,
-                        ]
-                    ]
-                ]);
+                return redirect('/home');
             }
-     
         } catch (Exception $e) {
             dd($e->getMessage());
         }
