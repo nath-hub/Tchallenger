@@ -133,8 +133,7 @@ class AuthController extends Controller
 
             $existingUser = User::where('email', $user->email)->first();
 
-            $token = $user->createToken('API TOKEN');
-
+            
             if ($existingUser) {
 
                 Auth::login($existingUser, true);
@@ -149,6 +148,8 @@ class AuthController extends Controller
 
                 Auth::login($newUser, true);
             }
+
+            $token = $user->createToken('API TOKEN');
 
             return response()->json([
                 'code' => 200,
