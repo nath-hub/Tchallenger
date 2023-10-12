@@ -131,7 +131,7 @@ class AuthController extends Controller
      
             $user = Socialite::driver('google')->user();
       
-            $finduser = User::where('email', $user->email)->first();
+            $finduser = User::where('google_id', $user->id)->first();
       
             if($finduser){
       
