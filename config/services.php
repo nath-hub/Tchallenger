@@ -38,9 +38,9 @@ return [
     ],
 
     'google' => [
-        'client_id' => '359803378024-vo14cl4euq150hsngg545lt56qciu0r4.apps.googleusercontent.com',
-        'client_secret' => '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',
-        'redirect' => 'https://www.backend.tchallenger.com/public/callback/google',
+        'client_id' => '359803378024-a43f72j8hgcko04g90ivg4b4ppm5vst7.apps.googleusercontent.com',
+        'client_secret' => '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',
+        'redirect' => 'https://www.backend.tchallenger.com/public/api/callback/google',
       ], 
 
 ];
