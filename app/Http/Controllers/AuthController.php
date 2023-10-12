@@ -130,104 +130,66 @@ class AuthController extends Controller
         try {
      
             $user = Socialite::driver('google')->user();
+      
+            $finduser = User::where('google_id', $user->id)->first();
+      
+            if($finduser){
+      
+                Auth::login($finduser);
 
-            $existingUser = User::where('email', $user->email)->first();
+                $token = $user->createToken('API TOKEN');
+     
+                return response()->json([
+                    'code' => 200,
+                    'data' => [
+                        'token' => [
+                            'type' => 'Bearer',
+                            'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
+                            'access_token' => $token->plainTextToken
+                        ],
+                        'user' => [
 
-            
-            if ($existingUser) {
-
-                Auth::login($existingUser, true);
-
-            } else {
+                            'phone' => $user->phone,
+                            'email' => $user->email,
+                            'avatar' => $user->avatar,
+                            'login' => $user->login,
+                        ]
+                    ]
+                ]);
+      
+            }else{
                 $newUser = User::create([
                     'login' => $user->name,
                     'email' => $user->email,
                     'google_id'=> $user->id,
                     'password' => encrypt('my-google')
                 ]);
+     
+                Auth::login($newUser);
 
-                Auth::login($newUser, true);
-            }
+                $token = $user->createToken('API TOKEN');
+      
+                return response()->json([
+                    'code' => 200,
+                    'data' => [
+                        'token' => [
+                            'type' => 'Bearer',
+                            'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
+                            'access_token' => $token->plainTextToken
+                        ],
+                        'user' => [
 
-            $token = $user->createToken('API TOKEN');
-
-            return response()->json([
-                'code' => 200,
-                'data' => [
-                    'token' => [
-                        'type' => 'Bearer',
-                        'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
-                        'access_token' => $token->plainTextToken
-                    ],
-                    'user' => [
-
-                        'phone' => $user->phone,
-                        'email' => $user->email,
-                        'avatar' => $user->avatar,
-                        'login' => $user->login,
+                            'phone' => $user->phone,
+                            'email' => $user->email,
+                            'avatar' => $user->avatar,
+                            'login' => $user->login,
+                        ]
                     ]
-                ]
-            ]);
-      
-            // $finduser = User::where('email', $user->email)->first();
-      
-            // if($finduser){
-      
-            //     Auth::login($finduser);
-
-            //     $token = $user->createToken('API TOKEN');
-     
-            //     return response()->json([
-            //         'code' => 200,
-            //         'data' => [
-            //             'token' => [
-            //                 'type' => 'Bearer',
-            //                 'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
-            //                 'access_token' => $token->plainTextToken
-            //             ],
-            //             'user' => [
-
-            //                 'phone' => $user->phone,
-            //                 'email' => $user->email,
-            //                 'avatar' => $user->avatar,
-            //                 'login' => $user->login,
-            //             ]
-            //         ]
-            //     ]);
-      
-            // }else{
-            //     $newUser = User::create([
-            //         'login' => $user->name,
-            //         'email' => $user->email,
-            //         'google_id'=> $user->id,
-            //         'password' => encrypt('my-google')
-            //     ]);
-     
-            //     Auth::login($newUser);
-
-            //     $token = $user->createToken('API TOKEN');
-      
-            //     return response()->json([
-            //         'code' => 200,
-            //         'data' => [
-            //             'token' => [
-            //                 'type' => 'Bearer',
-            //                 'expires_at' =>  Carbon::parse($token->accessToken->expires_at),
-            //                 'access_token' => $token->plainTextToken
-            //             ],
-            //             'user' => [
-
-            //                 'phone' => $user->phone,
-            //                 'email' => $user->email,
-            //                 'avatar' => $user->avatar,
-            //                 'login' => $user->login,
-            //             ]
-            //         ]
-            //     ]);
-           // }
+                ]);
+            }
      
         } catch (Exception $e) {
-            return $e->getMessage();
+            dd($e->getMessage());
         }
     }
 
