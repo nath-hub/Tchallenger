@@ -103,17 +103,43 @@ class AuthController extends Controller
 
             $user = Socialite::driver('facebook')->stateless()->user();
 
-            $saveUser = User::updateOrCreate([
-                'facebook_id' => $user->getId(),
-            ], [
-                'name' => $user->getName(),
-                'email' => $user->getEmail(),
-                'password' => Hash::make($user->getName() . '@' . $user->getId())
+            $finduser = User::where('facebook_id', $user->id)->first();
+
+            if ($finduser) {
+
+                Auth::login($finduser);
+
+            } else {
+                $newUser = User::create([
+                    'login' => $user->name,
+                    'email' => $user->email,
+                    'facebook_id' => $user->id,
+                    'email_verified_at' => Carbon::now(),
+                    'derniereConnexion' => Carbon::now(),
+                    'password' => encrypt('my-google')
+
+                ]);
+
+                Auth::login($newUser);
+
+            }
+
+            return response()->json([
+                'code' => 200,
+                'data' => [
+                    'token' => [
+                        'type' => 'Bearer',
+                        'access_token' => $user->token
+                    ],
+                    'user' => [
+
+                        'phone' => $user->phone,
+                        'email' => $user->email,
+                        'avatar' => $user->avatar,
+                        'login' => $user->name,
+                    ]
+                ]
             ]);
-
-            Auth::loginUsingId($saveUser->id);
-
-            return redirect()->route('home');
         } catch (\Throwable $th) {
             throw $th;
         }
@@ -174,7 +200,7 @@ class AuthController extends Controller
         }
     }
 
-    
+
 
     public function logout(Request $request, User $user)
     {

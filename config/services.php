@@ -32,9 +32,9 @@ return [
     ],
 
     'facebook' => [
-        'client_id' => '867540551656344', //USE FROM FACEBOOK DEVELOPER ACCOUNT
-        'client_secret' => 'd1782b234b656de5c6f9f053ed6fce14', //USE FROM FACEBOOK DEVELOPER ACCOUNT
-        'redirect' => 'https://www.backend.tchallenger.com/public/facebook/callback'
+        'client_id' => '297695824536822', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'client_secret' => '55490def2f1b7a36172d4b63a4393a55', //USE FROM FACEBOOK DEVELOPER ACCOUNT
+        'redirect' => 'https://www.backend.tchallenger.com/public/api/facebook/callback'
     ],
 
     // 'google' => [

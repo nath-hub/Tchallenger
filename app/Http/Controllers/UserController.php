@@ -89,8 +89,6 @@ class UserController extends Controller
 
         $input = $request->validated();
 
-        // return $input;
-
         $data = UserService::store($input);
 
         return response()->json([
