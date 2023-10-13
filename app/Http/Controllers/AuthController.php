@@ -65,33 +65,6 @@ class AuthController extends Controller
     }
 
 
-
-    public function LoginWithGoogle()
-    {
-    }
-
-    // public function LoginWithFacebook(Request $request)
-    // {
-
-    //     try {
-    //         $user = Socialite::driver('facebook')->redirect()->user();
-
-    //         $saveUser = User::updateOrCreate([
-    //             'facebook_id' => $user->getId(),
-    //         ],[
-    //             'name' => $user->getName(),
-    //             'email' => $user->getEmail(),
-    //             'password' => Hash::make($user->getName().'@'.$user->getId())
-    //              ]);
-
-    //         Auth::loginUsingId($saveUser->id);
-
-    //         return redirect()->route('home');
-    //         } catch (\Throwable $th) {
-    //            throw $th;
-    //         }
-    //     }
-
     public function loginUsingFacebook()
     {
         return Socialite::driver('facebook')->redirect();
@@ -108,7 +81,6 @@ class AuthController extends Controller
             if ($finduser) {
 
                 Auth::login($finduser);
-
             } else {
                 $newUser = User::create([
                     'login' => $user->name,
@@ -121,7 +93,6 @@ class AuthController extends Controller
                 ]);
 
                 Auth::login($newUser);
-
             }
 
             return response()->json([
@@ -163,7 +134,6 @@ class AuthController extends Controller
             if ($finduser) {
 
                 Auth::login($finduser);
-
             } else {
                 $newUser = User::create([
                     'login' => $user->name,
@@ -176,7 +146,6 @@ class AuthController extends Controller
                 ]);
 
                 Auth::login($newUser);
-
             }
 
             return response()->json([

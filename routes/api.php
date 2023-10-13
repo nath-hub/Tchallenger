@@ -18,13 +18,12 @@ use Illuminate\Support\Facades\Route;
 
 Route::group(['middleware' => ['web']], function () {
 
-    // Route::get('facebook/callback', [AuthController::class, 'LoginWithFacebook']);
-
-    Route::get('auth', [AuthController::class, 'loginUsingFacebook'])->name('login');
-    Route::get('callback', [AuthController::class, 'callbackFromFacebook'])->name('callback');
+    Route::get('facebook/auth', [AuthController::class, 'loginUsingFacebook'])->name('login');
+    Route::get('facebook/callback', [AuthController::class, 'callbackFromFacebook'])->name('callback');
 
     Route::get('auth/google', [AuthController::class, 'redirectToGoogle']);
     Route::get('callback/google', [AuthController::class, 'handleCallback']);
+    
 });
 
 Route::apiResource("users", UserController::class);

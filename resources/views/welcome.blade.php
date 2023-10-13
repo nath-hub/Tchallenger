@@ -41,7 +41,7 @@
              
 
                     <div>
-                        <a href="api/auth" style="margin-top: 0px !important;background: rgb(48, 91, 144);color: #ffffff;padding: 5px;border-radius:7px;" class="btn btn-facebook btn-user btn-block">
+                        <a href="api/facebook/auth" style="margin-top: 0px !important;background: rgb(48, 91, 144);color: #ffffff;padding: 5px;border-radius:7px;" class="btn btn-facebook btn-user btn-block">
                             Login with Facebook
                          </a>
                          <a href="api/auth/google" style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2">
