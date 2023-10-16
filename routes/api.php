@@ -23,7 +23,9 @@ Route::group(['middleware' => ['web']], function () {
 
     Route::get('auth/google', [AuthController::class, 'redirectToGoogle']);
     Route::get('callback/google', [AuthController::class, 'handleCallback']);
-    
+
+    Route::get('auth/twitter', [AuthController::class, 'twitterRedirect'])->name('login.twitter');
+    Route::get('callback/twitter', [AuthController::class, 'twitterCallback']);
 });
 
 Route::apiResource("users", UserController::class);

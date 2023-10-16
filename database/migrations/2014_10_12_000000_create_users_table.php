@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('active')->nullable()->default(0);
             $table->string('facebook_id')->nullable();
             $table->string('google_id')->nullable();
+            $table->string('twitter_id')->nullable();
             $table->timestamp('derniereConnexion')->nullable();
             $table->string('avatar')->nullable();
             $table->integer('code')->nullable();

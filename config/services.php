@@ -49,4 +49,10 @@ return [
         'redirect' => 'https://www.backend.tchallenger.com/public/api/callback/google',
       ], 
 
+      'twitter' => [
+        'client_id' => 'WUU1bzVxc2xFT2h2bnZncFAxYm06MTpjaQ',
+        'client_secret' => 'cTHLtbOA9QOgIU2yEHyKoxXS11OzRnYU7sFAnOw_a14n2G3q6V',
+        'redirect' => 'https://www.backend.tchallenger.com/public/api/callback/twitter',
+      ], 
+
 ];

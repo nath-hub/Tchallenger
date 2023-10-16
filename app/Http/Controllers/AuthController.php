@@ -103,7 +103,6 @@ class AuthController extends Controller
                         'access_token' => $user->token
                     ],
                     'user' => [
-
                         'phone' => $user->phone,
                         'email' => $user->email,
                         'avatar' => $user->avatar,
@@ -170,6 +169,54 @@ class AuthController extends Controller
     }
 
 
+    public function twitterRedirect(){
+        return Socialite::driver('twitter')->redirect();
+    }
+
+    public function twitterCallback(){
+        try {
+
+            $user = Socialite::driver('twitter')->stateless()->user();
+
+            $finduser = User::where('twitter_id', $user->id)->first();
+
+            if ($finduser) {
+
+                Auth::login($finduser);
+            } else {
+                $newUser = User::create([
+                    'login' => $user->name,
+                    'email' => $user->email,
+                    'twitter_id' => $user->id,
+                    'email_verified_at' => Carbon::now(),
+                    'derniereConnexion' => Carbon::now(),
+                    'password' => encrypt('password')
+
+                ]);
+
+                Auth::login($newUser);
+            }
+
+            return response()->json([
+                'code' => 200,
+                'data' => [
+                    'token' => [
+                        'type' => 'Bearer',
+                        'access_token' => $user->token
+                    ],
+                    'user' => [
+
+                        'phone' => $user->phone,
+                        'email' => $user->email,
+                        'avatar' => $user->avatar,
+                        'login' => $user->name,
+                    ]
+                ]
+            ]);
+        } catch (Exception $e) {
+            dd($e->getMessage());
+        }
+    }
 
     public function logout(Request $request, User $user)
     {

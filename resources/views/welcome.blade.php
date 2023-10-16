@@ -47,6 +47,9 @@
                          <a href="api/auth/google" style="margin-top: 0px !important;background: green;color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2">
                             <strong>Google Login</strong>
                           </a> 
+                          <a href="api/auth/twitter" style="margin-top: 0px !important;background: rgb(0, 149, 183);color: #ffffff;padding: 5px;border-radius:7px;" class="ml-2">
+                            <strong>Twitter Login</strong>
+                          </a> 
                     </div>
                     <div>\n</div>
                     <div>\n</div>
