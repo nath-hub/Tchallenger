@@ -176,7 +176,7 @@ class AuthController extends Controller
     public function twitterCallback(){
         try {
 
-            $user = Socialite::driver('twitter')->stateless()->user();
+            $user = Socialite::driver('twitter')->user();
 
             $finduser = User::where('twitter_id', $user->id)->first();
 
