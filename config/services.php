@@ -50,8 +50,8 @@ return [
       ], 
 
       'twitter' => [
-        'client_id' => 'EB2H9Zo4emPAlGzNwx613U3cg',
-        'client_secret' => 'dtm5Xm5rxL5op0TqI5U4HhthkIeZtUO6TJEIaqI1oC19YwOJ8E',
+        'client_id' => 'WUU1bzVxc2xFT2h2bnZncFAxYm06MTpjaQ',
+        'client_secret' => 'ydCJTXjUom-CwF3usNke7d2vXR9Gc7PN0QT4hbbE8YlNdiC6iH',
         'redirect' => 'https://www.backend.tchallenger.com/public/api/callback/twitter',
       ], 
 
