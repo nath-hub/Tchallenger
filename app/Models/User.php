@@ -2,7 +2,6 @@
 
 namespace App\Models;
 
-
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -41,5 +40,43 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
-    
+    public function notification()
+    {
+        $this->hasMany(Notification::class);
+    }
+
+    public function paiements()
+    {
+        $this->hasMany(Paiement::class);
+    }
+
+    public function userTo(){
+        $this->belongsToMany(User::class, 'relationships', 
+        'user_from_id', 'user_to_id', 'type');
+    }
+
+    public function userFrom(){
+        $this->belongsToMany(User::class, 'relationships', 
+        'user_from_id', 'user_to_id', 'type');
+    }
+
+    public function participations(){
+        $this->belongsToMany(Participation::class, 'vote');
+    }
+
+    public function participations_action(){
+        $this->belongsToMany(Participation::class, 'action');
+    }
+
+    public function parametre(){
+        $this->hasOne(Parameter::class);
+    }
+
+    public function post(){
+        $this->belongsToMany(Post::class, 'interaction');
+    }
+
+    public function posts(){
+        return $this->hasMany(Post::class);
+    }
 }

@@ -28,9 +28,9 @@ class CategoriePolicy
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Categorie $categorie)
+    public function view(?User $user, Categorie $categorie)
     {
-        //
+        return true;
     }
 
     /**
@@ -39,9 +39,9 @@ class CategoriePolicy
      * @param  \App\Models\User  $user
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function create(User $user)
+    public function create(?User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -51,9 +51,9 @@ class CategoriePolicy
      * @param  \App\Models\Categorie  $categorie
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Categorie $categorie)
+    public function update(?User $user, Categorie $categorie)
     {
-        //
+        return true;
     }
 
     /**

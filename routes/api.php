@@ -1,8 +1,12 @@
 <?php
 
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\CategorieController;
+use App\Http\Controllers\PostController;
+use App\Http\Controllers\ParameterController;
+use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\UserController;
-use Illuminate\Http\Request;
+use App\Models\Participation;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -42,3 +46,16 @@ Route::get('update-verification-email/{user}', [UserController::class, 'verifica
 Route::post('users/avatar', [UserController::class, 'uploadAvatar'])->name('users.avatar');
 
 Route::put('update-password/{user}', [UserController::class, 'updatePassword'])->name('updatePassword');
+
+
+//
+
+Route::apiResource("categories", CategorieController::class);//->middleware('auth:sanctum');
+
+Route::apiResource("posts", PostController::class)->middleware('auth:sanctum');
+
+Route::apiResource('parametres', ParameterController::class)->middleware('auth:sanctum');
+
+Route::post('posts/files', [UserController::class, 'uplaodFiles'])->name('posts.files');
+
+Route::apiResource('participations', ParticipationController::class);

@@ -13,7 +13,7 @@ class StoreParticipationRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,16 @@ class StoreParticipationRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "title" => "required|string",
+            "description" => "required|string",
+            "url_video" => "string",
+            "url_audio" => "string",
+            "url_image" => "string",
+            "likes" => "string",
+            "vues" => "string",
+            "shares" => "string",
+            "comments" => "string",
+            "post_id" => "string",
         ];
     }
 }

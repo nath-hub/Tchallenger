@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Participation extends Model
+class Post extends Model
 {
     use HasApiTokens;
     use HasFactory;
@@ -21,18 +21,19 @@ class Participation extends Model
      */
     protected $guarded = ['id'];
 
+    public function participations(){
+        return $this->hasMany(Participation::class);
+    }
 
-
-    public function post()
-    {
-        $this->belongsTo(Post::class);
+    public function users(){
+        $this->belongsToMany(User::class, 'interaction');
     }
 
     public function user(){
-        $this->belongsToMany(User::class, 'vote');
+        return $this->belongsTo(User::class);
     }
 
-    public function user_action(){
-        $this->belongsToMany(User::class, 'action');
+    public function categorie(){
+        return $this->belongsTo(Categorie::class);
     }
 }

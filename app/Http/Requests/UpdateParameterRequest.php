@@ -13,7 +13,7 @@ class UpdateParameterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class UpdateParameterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "color"=>"sometimes|required|string",
+            "notif_abonnement"=>"sometimes|required",
+            "notif_challenge"=>"sometimes|required",
+            "notif_comment"=>"sometimes|required",
+            "notif_publication"=>"sometimes|required",
+            "notif_message"=>"sometimes|required",
+            "langue"=>"sometimes|required",
         ];
     }
 }

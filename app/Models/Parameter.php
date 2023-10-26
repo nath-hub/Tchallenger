@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
@@ -11,7 +12,7 @@ class Parameter extends Model
 {
     use HasApiTokens;
     use HasFactory;
-    use Notifiable;
+    use Notifiable, SoftDeletes;
 
     /**
      * The attributes that aren't mass assignable.
@@ -19,4 +20,9 @@ class Parameter extends Model
      * @var array
      */
     protected $guarded = ['id'];
+
+
+    public function user(){
+        $this->belongsTo(User::class);
+    }
 }

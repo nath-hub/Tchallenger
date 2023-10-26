@@ -3,36 +3,23 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\Pivot;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 
-class Participation extends Model
+
+class Action extends Pivot
 {
     use HasApiTokens;
     use HasFactory;
     use Notifiable, SoftDeletes;
 
-    /**
+
+     /**
      * The attributes that aren't mass assignable.
      *
      * @var array
      */
     protected $guarded = ['id'];
-
-
-
-    public function post()
-    {
-        $this->belongsTo(Post::class);
-    }
-
-    public function user(){
-        $this->belongsToMany(User::class, 'vote');
-    }
-
-    public function user_action(){
-        $this->belongsToMany(User::class, 'action');
-    }
 }

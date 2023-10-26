@@ -5,14 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Laravel\Sanctum\HasApiTokens;
 
-class Notification extends Model
+class Paiement extends Model
 {
-    use HasApiTokens;
+    use \Laravel\Sanctum\HasApiTokens;
     use HasFactory;
-    use Notifiable, SoftDeletes;
+    use \Illuminate\Notifications\Notifiable, SoftDeletes;
 
     /**
      * The attributes that aren't mass assignable.

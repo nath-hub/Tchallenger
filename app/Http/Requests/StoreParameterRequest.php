@@ -13,7 +13,7 @@ class StoreParameterRequest extends FormRequest
      */
     public function authorize()
     {
-        return false;
+        return true;
     }
 
     /**
@@ -24,7 +24,13 @@ class StoreParameterRequest extends FormRequest
     public function rules()
     {
         return [
-            //
+            "color"=>"required|string",
+            "notif_abonnement",
+            "notif_challenge",
+            "notif_comment",
+            "notif_publication",
+            "notif_message",
+            "langue",
         ];
     }
 }

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
+use App\Models\UserDelete;
 use App\Services\Facades\UserFacade as UserService;
+use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
@@ -216,8 +218,32 @@ class UserController extends Controller
                 'error' => 'Account not validate in email',
                 'message' => 'Account is not validate, verify your email',
             ], 401);
-        } else {
+        } else {  
+            $user = new UserDelete();
+            $user->phone = $user['first_name'];
+            $user->email = $user['email'];
+            $user->avatar = $user['avatar'];
+            $user->login = $user['login'];
+            $user->active = $user['active'];
+            $user->facebook_id = $user['facebook_id'];
+            $user->google_id = $user['google_id'];
+            $user->twitter_id = $user['twitter_id'];
+            $user->derniereConnexion = $user['derniereConnexion'];
+            $user->code = $user['code'];
+            $user->email_verified_at = $user['email_verified_at'];
+            $user->password = $user['password'];
+            $user->date_creation = $user['created_at'];
+            $user->derniere_mise_a_jour = $user['updated_at'];
+            $user->date_delete = Carbon::now();
+    
+            $user->save();
+    
+            $state = $user->delete();
+
+
+
            return response()->json([
+                "state" => $state,
                 'message' => 'users successfull delete'
             ], 202);
         }

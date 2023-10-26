@@ -15,17 +15,21 @@ return new class extends Migration
     {
         Schema::create('participations', function (Blueprint $table) {
             $table->id();
-            $table->unsignedBigInteger('challenge_id');
+            $table->unsignedBigInteger('post_id');
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('url_video');
             $table->string('url_audio');
             $table->string('url_image');
+            $table->integer('likes')->default(0);
+            $table->integer('vues')->default(0);
+            $table->integer('shares')->default(0);
+            $table->integer('comments')->default(0);
             $table->softDeletes();
 
-            $table->index(["challenge_id"], "fk_challenge_participation");
+            $table->index(["post_id"], "fk_post_participation");
 
-            $table->foreign('challenge_id')->references('id')->on('challenges');
+            $table->foreign('post_id')->references('id')->on('posts');
 
             $table->timestamps();
         });

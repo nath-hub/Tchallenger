@@ -30,7 +30,7 @@ class ParameterPolicy
      */
     public function view(User $user, Parameter $parameter)
     {
-        //
+        return $user->id === $parameter->user_id;
     }
 
     /**
@@ -41,7 +41,7 @@ class ParameterPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ParameterPolicy
      */
     public function update(User $user, Parameter $parameter)
     {
-        //
+        return $user->id === $parameter->user_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class ParameterPolicy
      */
     public function delete(User $user, Parameter $parameter)
     {
-        //
+        return $user->id === $parameter->user_id;
     }
 
     /**
