@@ -18,7 +18,7 @@ class ParticipationPolicy
      */
     public function viewAny(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -28,9 +28,9 @@ class ParticipationPolicy
      * @param  \App\Models\Participation  $participation
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function view(User $user, Participation $participation)
+    public function view(?User $user, Participation $participation)
     {
-        //
+        return true;
     }
 
     /**
@@ -41,7 +41,7 @@ class ParticipationPolicy
      */
     public function create(User $user)
     {
-        //
+        return true;
     }
 
     /**
@@ -53,7 +53,7 @@ class ParticipationPolicy
      */
     public function update(User $user, Participation $participation)
     {
-        //
+        return $user->id === $participation->user_id;
     }
 
     /**
@@ -65,7 +65,7 @@ class ParticipationPolicy
      */
     public function delete(User $user, Participation $participation)
     {
-        //
+        return $user->id === $participation->user_id;
     }
 
     /**

@@ -15,7 +15,6 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('participation_id');
-            $table->date("date");
 
             $table->index(["user_id"], "fk_vote_user");
             $table->index(["participation_id"], "fk_participation_vote");

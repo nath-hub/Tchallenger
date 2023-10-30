@@ -22,4 +22,6 @@ class Action extends Pivot
      * @var array
      */
     protected $guarded = ['id'];
+
+    
 }

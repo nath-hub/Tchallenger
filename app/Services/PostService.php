@@ -33,6 +33,8 @@ class PostService
     {
         $state = $post->delete();
 
+        $post->participations()->delete();
+
         return $state;
     }
 }

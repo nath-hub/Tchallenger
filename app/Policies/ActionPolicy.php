@@ -13,15 +13,15 @@ class ActionPolicy
      */
     public function viewAny(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
      * Determine whether the user can view the model.
      */
-    public function view(User $user, Action $action): bool
+    public function view(?User $user, Action $action): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -29,7 +29,7 @@ class ActionPolicy
      */
     public function create(User $user): bool
     {
-        //
+        return true;
     }
 
     /**
@@ -37,7 +37,7 @@ class ActionPolicy
      */
     public function update(User $user, Action $action): bool
     {
-        //
+        return $user->id === $action->user_id;
     }
 
     /**
@@ -45,7 +45,7 @@ class ActionPolicy
      */
     public function delete(User $user, Action $action): bool
     {
-        //
+        return $user->id === $action->user_id;
     }
 
     /**
@@ -53,7 +53,7 @@ class ActionPolicy
      */
     public function restore(User $user, Action $action): bool
     {
-        //
+        return $user->id === $action->user_id;
     }
 
     /**
@@ -61,6 +61,6 @@ class ActionPolicy
      */
     public function forceDelete(User $user, Action $action): bool
     {
-        //
+        return $user->id === $action->user_id;
     }
 }

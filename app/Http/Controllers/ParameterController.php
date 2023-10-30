@@ -43,10 +43,8 @@ class ParameterController extends Controller
      * @return string
      */
     public function show(Parameter $parameter)
-    {
+    {        
         $user = Auth::user();
-
-        return $parameter;
 
         $this->authorize("view",  [$user, $parameter]);
 

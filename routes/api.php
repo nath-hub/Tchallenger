@@ -6,7 +6,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\UserController;
-use App\Models\Participation;
+use App\Http\Controllers\ActionController;
+use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -58,4 +59,8 @@ Route::apiResource('parametres', ParameterController::class)->middleware('auth:s
 
 Route::post('posts/files', [UserController::class, 'uplaodFiles'])->name('posts.files');
 
-Route::apiResource('participations', ParticipationController::class);
+Route::apiResource('participations', ParticipationController::class)->middleware('auth:sanctum');
+
+Route::apiResource('votes', VoteController::class)->middleware('auth:sanctum');
+
+Route::apiResource('actions', ActionController::class)->middleware('auth:sanctum');

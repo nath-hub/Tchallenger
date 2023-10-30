@@ -82,10 +82,10 @@ class CategorieController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Categorie  $categorie
-     * @return \Illuminate\Http\Response
+     * @return string
      */
     public function destroy(Categorie $categorie)
     {
-        //
+        return $categorie->delete();
     }
 }

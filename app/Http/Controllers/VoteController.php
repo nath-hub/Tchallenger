@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StoreVoteRequest;
 use App\Http\Requests\UpdateVoteRequest;
+use App\Models\Participation;
 use App\Models\Vote;
+use App\Services\Facades\VoteFacade as VoteService;
 
 class VoteController extends Controller
 {
@@ -13,7 +15,10 @@ class VoteController extends Controller
      */
     public function index()
     {
-        //
+
+        $vote = Vote::latest()->paginate(10);
+
+        return $vote;
     }
 
     /**
@@ -21,7 +26,13 @@ class VoteController extends Controller
      */
     public function store(StoreVoteRequest $request)
     {
-        //
+        $this->authorize("create", Vote::class);
+
+        $input = $request->validated();
+
+        $vote = VoteService::vote($input);
+
+        return $vote;
     }
 
     /**
@@ -29,7 +40,11 @@ class VoteController extends Controller
      */
     public function show(Vote $vote)
     {
-        //
+        $this->authorize("view", $vote);
+
+        $vote = VoteService::view($vote);
+
+        return $vote;
     }
 
     /**
@@ -37,7 +52,13 @@ class VoteController extends Controller
      */
     public function update(UpdateVoteRequest $request, Vote $vote)
     {
-        //
+        $this->authorize("update", $vote);
+
+        $input = $request->validated();
+
+        $vote = VoteService::update($vote, $input);
+
+        return $vote;
     }
 
     /**

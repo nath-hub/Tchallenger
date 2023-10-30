@@ -33,7 +33,7 @@ class StoreParticipationRequest extends FormRequest
             "vues" => "string",
             "shares" => "string",
             "comments" => "string",
-            "post_id" => "string",
+            "post_id" => "integer",
         ];
     }
 }

@@ -11,7 +11,7 @@ class StoreActionRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -22,7 +22,11 @@ class StoreActionRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            "type"=> "required|string",
+            "ip_adress"=> "string",
+            "canal"=> "sometimes|required_if:type, SHARE",
+            "comments"=> "sometimes|required_if:type, COMMENTAIRE",
+            "participation_id"=> "integer",
         ];
     }
 }

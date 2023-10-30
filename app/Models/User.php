@@ -61,11 +61,12 @@ class User extends Authenticatable
     }
 
     public function participations(){
-        $this->belongsToMany(Participation::class, 'vote');
+        return $this->belongsToMany(Participation::class, 'vote', 'user_id', 'participation_id');
     }
 
     public function participations_action(){
-        $this->belongsToMany(Participation::class, 'action');
+        return $this->belongsToMany(Participation::class, 'action',
+        'action_id', 'participation_id');
     }
 
     public function parametre(){
@@ -79,4 +80,10 @@ class User extends Authenticatable
     public function posts(){
         return $this->hasMany(Post::class);
     }
-}
+
+    public function participants(){
+        return $this->hasOne(Participation::class);
+    }
+
+}  
+

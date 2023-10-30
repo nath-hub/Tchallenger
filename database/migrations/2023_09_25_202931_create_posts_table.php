@@ -23,6 +23,7 @@ return new class extends Migration
             $table->timestamp('start_date')->nullable();
             $table->string('lieu')->nullable();
             $table->enum('state', ['OPEN', 'CLOSE'])->default("OPEN");
+            $table->enum('state_signe', ['OPEN', 'BLOCK'])->default("OPEN");
             $table->integer('price')->nullable();
             $table->boolean('private')->default(0);
             $table->string('url_video')->nullable();
@@ -31,6 +32,7 @@ return new class extends Migration
             $table->integer('likes')->default(0);
             $table->integer('vues')->default(0);
             $table->integer('shares')->default(0);
+            $table->integer('n_vote')->default(0);
             $table->integer('comments')->default(0);
 
             $table->index(["user_id"], "fk_user_post");

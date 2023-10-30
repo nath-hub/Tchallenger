@@ -17,7 +17,7 @@ class PostController extends Controller
     public function index():Paginator
     {
         return Post::with('categorie')
-            ->orderBy('id')
+            ->orderBy('id') 
             ->paginate(10)
             ->withQueryString()
             ->through(fn ($post) => [
@@ -69,7 +69,7 @@ class PostController extends Controller
     {
         $this->authorize("view",  $post);
 
-        $data = PostService::view($post);
+        PostService::view($post);
 
         return response()->json([
             [
@@ -123,6 +123,9 @@ class PostController extends Controller
 
         $data = PostService::delete($post);
 
-        return $data;
+        return response()->json([
+            "state" => $data,
+            'message' => 'users successfull delete'
+        ], 202);
     }
 }

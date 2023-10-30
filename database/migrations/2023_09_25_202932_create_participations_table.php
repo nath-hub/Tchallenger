@@ -14,8 +14,9 @@ return new class extends Migration
     public function up()
     {
         Schema::create('participations', function (Blueprint $table) {
-            $table->id();
+            $table->foreign('post_id')->references('id')->on('posts');$table->id();
             $table->unsignedBigInteger('post_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('title');
             $table->string('description')->nullable();
             $table->string('url_video');
@@ -25,11 +26,14 @@ return new class extends Migration
             $table->integer('vues')->default(0);
             $table->integer('shares')->default(0);
             $table->integer('comments')->default(0);
+            $table->integer('nb_vote')->default(0);
             $table->softDeletes();
 
             $table->index(["post_id"], "fk_post_participation");
+            $table->index(["user_id"], "fk_user_participation");
 
             $table->foreign('post_id')->references('id')->on('posts');
+            $table->foreign('user_id')->references('id')->on('users');
 
             $table->timestamps();
         });

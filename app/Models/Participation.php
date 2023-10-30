@@ -25,14 +25,21 @@ class Participation extends Model
 
     public function post()
     {
-        $this->belongsTo(Post::class);
+        return $this->belongsTo(Post::class, "post_id");
     }
 
-    public function user(){
-        $this->belongsToMany(User::class, 'vote');
+    public function user()
+    {
+        return $this->belongsToMany(User::class, 'vote', 'user_id', 'participation_id');
     }
 
-    public function user_action(){
-        $this->belongsToMany(User::class, 'action');
+    public function user_action()
+    {
+        return $this->belongsToMany(User::class, 'action',   'action_id', 'participation_id');
+    }
+
+    public function users()
+    {
+        return $this->belongsTo(User::class);
     }
 }
