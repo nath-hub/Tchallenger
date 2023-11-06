@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->unsignedBigInteger('categorie_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('media_id');
             $table->string('title');
             $table->string('description')->nullable();
             $table->enum("type", ["STANDARD", "CHALLENGE"])->default("CHALLENGE");
@@ -26,9 +27,6 @@ return new class extends Migration
             $table->enum('state_signe', ['OPEN', 'BLOCK'])->default("OPEN");
             $table->integer('price')->nullable();
             $table->boolean('private')->default(0);
-            $table->string('url_video')->nullable();
-            $table->string('url_audio')->nullable();
-            $table->string('url_image')->nullable();
             $table->integer('likes')->default(0);
             $table->integer('vues')->default(0);
             $table->integer('shares')->default(0);
@@ -36,10 +34,12 @@ return new class extends Migration
             $table->integer('comments')->default(0);
 
             $table->index(["user_id"], "fk_user_post");
+            $table->index(["media_id"], "fk_media_post");
             $table->index(["categorie_id"], "fk_categories_post");
 
             $table->foreign('categorie_id')->references('id')->on('categories');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('media_id')->references('id')->on('media');
 
             $table->softDeletes();
             $table->timestamps();

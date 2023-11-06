@@ -36,4 +36,8 @@ class Post extends Model
     public function categorie(){
         return $this->belongsTo(Categorie::class);
     }
+
+    public function media(){
+        return $this->hasOne(Media::class);
+    }
 }

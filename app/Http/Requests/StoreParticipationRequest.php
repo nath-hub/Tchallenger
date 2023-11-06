@@ -34,6 +34,7 @@ class StoreParticipationRequest extends FormRequest
             "shares" => "string",
             "comments" => "string",
             "post_id" => "integer",
+            "media_id"=> "integer",
         ];
     }
 }

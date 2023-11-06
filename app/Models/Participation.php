@@ -42,4 +42,8 @@ class Participation extends Model
     {
         return $this->belongsTo(User::class);
     }
+
+    public function media(){
+        return $this->hasOne(Media::class);
+    }
 }

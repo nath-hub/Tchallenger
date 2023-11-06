@@ -14,14 +14,13 @@ return new class extends Migration
     public function up()
     {
         Schema::create('participations', function (Blueprint $table) {
-            $table->foreign('post_id')->references('id')->on('posts');$table->id();
+           
+            $table->id();
             $table->unsignedBigInteger('post_id');
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('media_id');
             $table->string('title');
             $table->string('description')->nullable();
-            $table->string('url_video');
-            $table->string('url_audio');
-            $table->string('url_image');
             $table->integer('likes')->default(0);
             $table->integer('vues')->default(0);
             $table->integer('shares')->default(0);
@@ -31,9 +30,11 @@ return new class extends Migration
 
             $table->index(["post_id"], "fk_post_participation");
             $table->index(["user_id"], "fk_user_participation");
+            $table->index(["media_id"], "fk_media_participation");
 
             $table->foreign('post_id')->references('id')->on('posts');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('media_id')->references('id')->on('media');
 
             $table->timestamps();
         });

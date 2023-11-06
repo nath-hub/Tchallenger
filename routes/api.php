@@ -7,6 +7,7 @@ use App\Http\Controllers\ParameterController;
 use App\Http\Controllers\ParticipationController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\ActionController;
+use App\Http\Controllers\MediaController;
 use App\Http\Controllers\VoteController;
 use Illuminate\Support\Facades\Route;
 
@@ -64,3 +65,5 @@ Route::apiResource('participations', ParticipationController::class)->middleware
 Route::apiResource('votes', VoteController::class)->middleware('auth:sanctum');
 
 Route::apiResource('actions', ActionController::class)->middleware('auth:sanctum');
+
+Route::apiResource('upload', MediaController::class)->middleware('auth:sanctum');

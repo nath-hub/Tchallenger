@@ -22,18 +22,7 @@ class StorePostRequest extends FormRequest
      */
     public function rules(): array
     {
-        $routerName = $this->route()->getName();
-
-        if ($routerName === "posts.files") {
-
-            return [
-                'avatar_file' => [ 'png', 'gif', 'bmp', 'svg', 'wav', 'mp4',
-                        'mov', 'avi', 'wmv', 'mp3', 'm4a',
-                        'jpg', 'jpeg', 'mpga', 'webp', 'wma',
-                    ],
-                    'max_upload_time' => 5,
-            ];
-        }
+       
         return [
             "title" => "string|required",
             "description" => "string|required",
@@ -47,6 +36,7 @@ class StorePostRequest extends FormRequest
             "url_audio" => "string",
             "url_image" => "string",
             "categorie_id" => "integer",
+            "media_id"=> "integer",
         ];
     }
 }
