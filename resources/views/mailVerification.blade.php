@@ -92,7 +92,7 @@
       <p style="display:none">{{$verify}}</p>
 
       <div class="button">
-        <button id="but"><a href="{{$lieu}}public/api/update-verification-email/{{$verify}}">Valider mon compte </a> </button>
+        <button id="but"><a href="{{$lieu}}api/update-verification-email/{{$verify}}">Valider mon compte </a> </button>
       </div>
 
 
