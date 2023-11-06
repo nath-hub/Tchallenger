@@ -23,11 +23,19 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules()
     {
-        return [
-            "login"=>"sometimes|string|required|unique:users",
-            "active"=>"sometimes|boolean",
-            "avatar"=>"sometimes|string",
-            "derniereConnexion"=>"sometimes|string|required"
-        ];
+        $routeName = $this->route()->getName();
+
+        if ($routeName === 'send.email') {
+            return [
+                "email" => "required|email",
+            ];
+        } else {
+            return [
+                "login" => "sometimes|string|required|unique:users",
+                "active" => "sometimes|boolean",
+                "avatar" => "sometimes|string",
+                "derniereConnexion" => "sometimes|string|required"
+            ];
+        }
     }
 }

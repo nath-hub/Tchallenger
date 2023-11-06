@@ -72,7 +72,9 @@ class UserService
 
             $email = $user[0]->email;
 
-            Mail::send('mailVerification', ['verify' => $user[0]->id], function ($message) use ($email) {
+            $lieu = asset('/');
+
+            Mail::send('mailVerification', ['verify' => $user[0]->id, 'lieu' => $lieu], function ($message) use ($email) {
                 $message->to($email);
                 $message->subject("E-mail de verification");
             });

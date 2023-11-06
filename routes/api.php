@@ -41,7 +41,7 @@ Route::post('login', [AuthController::class, 'login'])->name('login');
 
 Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-Route::post('send-email', [UserController::class, 'sendEmail'])->name('sendEmail');
+Route::post('send-email', [UserController::class, 'sendEmail'])->name('send.email');
 
 Route::get('update-verification-email/{user}', [UserController::class, 'verification'])->name('verification');
 

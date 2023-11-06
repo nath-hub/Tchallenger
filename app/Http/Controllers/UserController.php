@@ -174,7 +174,7 @@ class UserController extends Controller
 
         UserService::verification($user);
 
-        return view('welcome');
+        return view('notification');
     }
 
     public function uploadAvatar(StoreUserRequest $request, User $user)

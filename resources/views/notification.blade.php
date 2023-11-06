@@ -6,13 +6,13 @@
   <style>
     body {
       margin: 150px;
-      background-color: #cecece;
+      background-color: black;
     }
 
     #but {
-      background-color: #3f3f3e;
+      background-color: white;
       border: none;
-      color: #ffffff;
+      color: #fcbd00;
       padding: 15px 32px;
       text-align: center;
       text-decoration: none;
@@ -37,7 +37,6 @@
       text-align: center;
       padding-top: 20px;
       padding-bottom: 20px;
-      background-color: #fcbd00;
       height: 100px;
       width: 100%;
     }
@@ -45,22 +44,22 @@
     p {
       margin-top: 50px;
       text-align: center;
-      color: black;
+      color: white;
     }
 
     p a {
       text-decoration: none;
-      color: #fcbd00;
+      color: #fcbd00 !important;
        font-weight: 700;
     }
     
     button a {
       text-decoration: none;
-      color: white;
+      color: white !important;
     }
 
     .boy {
-      background-color: white;
+      background-color: black;
       text-align: center;
     }
 
@@ -74,6 +73,12 @@
       border-radius: 50%;
       border: 3px solid white;
     }
+    h1{
+      color: white;
+    }
+    .hello{
+      color: white;
+    }
   </style>
 </head>
 
@@ -84,19 +89,14 @@
       <img src="https://raw.githubusercontent.com/nath-hub/caisse0/main/public/logo.png" height="100" width="100">
     </div>
     <div class="corp">
-      <h1>VERIFICATION DE L'ADRESSE E-MAIL </h1>
+      <h1>Bravo, Votre adresse email a été confirmée !</h1>
 
       <div class="hello">
-        Hello. Veuillez cliquer sur le bouton ci-dessous pour verifier qu'il s'agit bien de vous sur <strong> labonneaffaire</strong>
-      </div>
-      <p style="display:none">{{$verify}}</p>
-
-      <div class="button">
-        <button id="but"><a href="{{$lieu}}public/api/update-verification-email/{{$verify}}">Valider mon compte </a> </button>
+       Vous pouvez désormais vous connecter à l’application et effectuer différent requêtte 
       </div>
 
 
-      <p>&copy; 2023 <a href="tchallenger.com" >Tchallenger</a></p>
+      <p>&copy; 2023 <a href="billib.fr" >Tchallenger</a></p>
     </div>
   </div>
 </body>
