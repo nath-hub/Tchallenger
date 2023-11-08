@@ -8,22 +8,123 @@ use App\Models\Parameter;
 use App\Services\Facades\ParameterFacade as ParameterService;
 use Illuminate\Support\Facades\Auth;
 
+
 class ParameterController extends Controller
 {
+
     /**
-     * Display a listing of the resource.
+ * @OA\SecuritySheme(
+ * securitySheme="bearerAuth",
+ * type="http",
+ * scheme="bearer",
+ * bearerFormat="JWT"
+ * )
+ */
+
+    /**
+     * @OA\Get(
+     *     path="/api/parametres",
+     *      operationId="indexxxx",
+     *      tags={"Parameter"},
+     *      summary="Get parameter",
+     *      description="Get parameter",
+     *      security={{"bearerAuth": {{}}}},
      *
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage des parameters."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function index()
     {
         return Parameter::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
+      /**
+     * @OA\Post(
+     *      path="/api/parametres",
+     *      operationId="storeeeee",
+     *      tags={"Parameter"},
+     *      summary="create Parameter",
+     *      description="create Parameter",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="Enregistrement d'un nouvel Parameter",
      *
-     * @param  \App\Http\Requests\StoreParameterRequest  $request
-     * @return string
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *       @OA\Property(property="color", type="string", format="string", example="laporte", description ="votre login"),
+     *       @OA\Property(property="notif_abonnement", type="boolean", format="1", example="1", description ="notification abonnement"),
+     *       @OA\Property(property="notif_challenge", type="boolean", format="1", example="1", description ="notification challenge"),
+     *       @OA\Property(property="notif_comment", type="boolean", format="1", example="1", description ="notification comment"),
+     *       @OA\Property(property="notif_publication", type="boolean", format="1", example="1", description ="notification publication"),
+     *       @OA\Property(property="notif_message", type="boolean", format="1", example="1", description ="notification message"),
+     *       @OA\Property(property="langue", type="string", format="string", example="fr", description ="votre langue"),
+         
+     *  )
+     *        ),
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="Parametre bien Creer."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *    @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function store(StoreParameterRequest $request)
     {
@@ -36,11 +137,56 @@ class ParameterController extends Controller
         return  $data;
     }
 
-    /**
-     * Display the specified resource.
+   /**
+     * @OA\Get(
+     *     path="/api/parametres/{id}",
+     *      operationId="showww",
+     *      tags={"Parameter"},
+     *      summary="Get parameter",
+     *      description="Get parameter",
+     *      security={{"bearerAuth": {{}}}},
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "parameter id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
      *
-     * @param  \App\Models\Parameter  $parameter
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'un parameter."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function show(Parameter $parameter)
     {        
@@ -56,12 +202,56 @@ class ParameterController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
+       /**
+     * @OA\Put(
+     *     path="/api/parametres/{id}",
+     *      operationId="updateee",
+     *      tags={"Parameter"},
+     *      summary="Update parameter",
+     *      description="Update parameter",
+     *      security={{"bearerAuth": {{}}}},
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "parameter id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
      *
-     * @param  \App\Http\Requests\UpdateParameterRequest  $request
-     * @param  \App\Models\Parameter  $parameter
-     * @return \Illuminate\Http\Response
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="reponse de la modification"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function update(UpdateParameterRequest $request, Parameter $parameter)
     {
@@ -76,11 +266,57 @@ class ParameterController extends Controller
         return $data;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Parameter  $parameter
-     * @return \Illuminate\Http\Response
+     /**
+     * @OA\Delete(
+     *      path="/api/parametres/{id}",
+     *      operationId="destroyyy",
+     *      tags={"Parameter"},
+     *      summary="delete parameter",
+     *      description="delete parameter",
+     *      security={{"bearerAuth": {{}}}},
+     * 
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "parameter id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *      
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="suppression du parameter."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function destroy(Parameter $parameter)
     {

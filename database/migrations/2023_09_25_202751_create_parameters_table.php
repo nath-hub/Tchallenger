@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('parameters', function (Blueprint $table) {
             $table->id();
 
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->unique();
 
             $table->enum('color', ['BACK', 'WHITE'])->default('WHITE');
             $table->boolean('notif_abonnement')->default(1);

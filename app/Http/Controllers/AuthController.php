@@ -13,11 +13,53 @@ use Socialite;
 
 class AuthController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+     /**
+     * @OA\Post(
+     *      path="/api/login",
+     *      operationId="login",
+     *      tags={"Auth"},
+     *      summary="login",
+     *      description="login",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="connexion d'un utilisateur",
      *
-     * @return string
-     * 
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *       @OA\Property(property="email", type="string", format="email", example="exmple@exemple.com", description ="votre email"),
+     *       @OA\Property(property="password", type="string", format="string", example="jdjfk3237&$#", description ="votre motde passe"),
+     *  )
+     *        ),
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="Connexion effectuée"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function login(AuthRequest $request)
     {
@@ -64,7 +106,46 @@ class AuthController extends Controller
         ], 401);
     }
 
-
+ /**
+     * @OA\Post(
+     *      path="/api/facebook/auth",
+     *      operationId="loginUsingFacebook",
+     *      tags={"Auth"},
+     *      summary="login with facebook",
+     *      description="login with facebook",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="connexion d'un utilisateur avec facebook",
+     *
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="Connexion effectuée"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function loginUsingFacebook()
     {
         return Socialite::driver('facebook')->redirect();
@@ -115,7 +196,46 @@ class AuthController extends Controller
         }
     }
 
-
+ /**
+     * @OA\Post(
+     *      path="/api/auth/google",
+     *      operationId="redirectToGoogle",
+     *      tags={"Auth"},
+     *      summary="login with google",
+     *      description="login with google",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="connexion d'un utilisateur avec google",
+     *
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="Connexion effectuée"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function redirectToGoogle()
     {
         return Socialite::driver('google')->redirect();
@@ -168,7 +288,47 @@ class AuthController extends Controller
         }
     }
 
-
+ /**
+     * @OA\Post(
+     *      path="/api/auth/twitter",
+     *      operationId="twitterRedirect",
+     *      tags={"Auth"},
+     *      summary="login with twitter",
+     *      description="login with twitter",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="connexion d'un utilisateur avec twitter",
+     *
+    
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="Connexion effectuée"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function twitterRedirect(){
         return Socialite::driver('twitter')->redirect();
     }
@@ -218,6 +378,48 @@ class AuthController extends Controller
         }
     }
 
+
+     /**
+     * @OA\Post(
+     *      path="/api/logout",
+     *      operationId="logout",
+     *      tags={"Auth"},
+     *      summary="logout of user",
+     *      description="logout",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="déconnexion d'un utilisateur",
+     *
+     * 
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="deconnexion effectuée"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function logout(Request $request, User $user)
     {
 

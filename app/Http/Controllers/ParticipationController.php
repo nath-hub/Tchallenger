@@ -10,10 +10,47 @@ use Illuminate\Support\Facades\Auth;
 
 class ParticipationController extends Controller
 {
+    
+    
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/participations",
+     *      operationId="indexxxxx",
+     *      tags={"Participation"},
+     *      summary="Get Participation",
+     *      description="Get Participation",
      *
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage de tous les participation."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function index()
     {
@@ -45,11 +82,65 @@ class ParticipationController extends Controller
             ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
+   /**
+     * @OA\Post(
+     *      path="/api/participations",
+     *      operationId="storeeee",
+     *      tags={"Participation"},
+     *      summary="Register of participation",
+     *      description="Register of participation",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="Enregistrement d'une nouvelle participation",
      *
-     * @param  \App\Http\Requests\StoreParticipationRequest  $request
-     * @return \Illuminate\Http\Response
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *       @OA\Property(property="title", type="string", format="string", example="laporte", description ="votre titre"),
+     *       @OA\Property(property="description", type="string", format="string", example="kdjfkd  kcvng", description ="votre description"),
+     *       @OA\Property(property="likes", type="integer", format="1", example="1", description ="nombre de likes"),
+     *       @OA\Property(property="vues", type="integer", format="1", example="1", description ="nombre de vues"),
+     *       @OA\Property(property="shares", type="integer", format="1", example="1", description ="nombre de shares"),
+     *       @OA\Property(property="comments", type="string", format="string", example="comments", description ="votre comments"),
+     *       @OA\Property(property="post_id", type="integer", format="integer", example="3", description ="votre post_id"),
+     *       @OA\Property(property="media_id", type="integer", format="integer", example="123456", description ="votre media_id"),
+         
+     *  )
+     *        ),
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="participation bien Creer."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function store(StoreParticipationRequest $request)
     {
@@ -57,31 +148,66 @@ class ParticipationController extends Controller
 
         $input = $request->validated();
 
-        $participation = ParticipationService::store($input);
+        $user = Auth::user();
+
+        $participation = ParticipationService::store($input, $user);
 
         return $participation;
     }
 
-    /**
-     * Display the specified resource.
+    
+    
+   
+
+      /**
+     * @OA\Get(
+     *     path="/api/participations/{id}",
+     *      operationId="showwww",
+     *      tags={"Participation"},
+     *      summary="Get participation",
+     *      description="Get participation",
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "participation id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
      *
-     * @param  \App\Models\Participation  $participation
-     * @return string
-     */
-    public function voteParticipation()
-    {
-        $this->authorize("voteParticipation", Participation::class);
-
-        $participation = ParticipationService::vote();
-
-        return $participation;
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\Participation  $participation
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'une participation."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function show(Participation $participation)
     {
@@ -113,12 +239,71 @@ class ParticipationController extends Controller
         ]);
     }
 
-    /**
-     * Update the specified resource in storage.
+     /**
+     * @OA\Put(
+     *     path="/api/participations/{id}",
+     *      operationId="updateeee",
+     *      tags={"Participation"},
+     *      summary="Update participation",
+     *      description="Update participation",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "participation id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *       @OA\Property(property="title", type="string", format="string", example="laporte", description ="votre titre"),
+     *       @OA\Property(property="description", type="string", format="string", example="kdjfkd  kcvng", description ="votre description"),
+     *       @OA\Property(property="likes", type="integer", format="1", example="1", description ="nombre de likes"),
+     *       @OA\Property(property="vues", type="integer", format="1", example="1", description ="nombre de vues"),
+     *       @OA\Property(property="shares", type="integer", format="1", example="1", description ="nombre de shares"),
+     *       @OA\Property(property="comments", type="string", format="string", example="comments", description ="votre comments"),
+     *       @OA\Property(property="post_id", type="integer", format="integer", example="3", description ="votre post_id"),
+     *       @OA\Property(property="media_id", type="integer", format="integer", example="123456", description ="votre media_id"),
+         
+     *  )
+     *        ),
      *
-     * @param  \App\Http\Requests\UpdateParticipationRequest  $request
-     * @param  \App\Models\Participation  $participation
-     * @return \Illuminate\Http\Response
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="reponse de la modification"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function update(UpdateParticipationRequest $request, Participation $participation)
     {
@@ -131,11 +316,57 @@ class ParticipationController extends Controller
         return $data;
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Participation  $participation
-     * @return string
+       /**
+     * @OA\Delete(
+     *      path="/api/participations/{id}",
+     *      operationId="destroyyyyy",
+     *      tags={"Participation"},
+     *      summary="delete participation",
+     *      description="delete participation",
+     * security={{"bearerAuth": {{}}}},
+     * 
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "participation id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *      
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="suppression de la participation."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function destroy(Participation $participation)
     {

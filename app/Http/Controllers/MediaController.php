@@ -10,16 +10,111 @@ use ProtoneMedia\LaravelFFMpeg\Support\FFMpeg;
 
 class MediaController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+     /**
+     * @OA\Get(
+     *     path="/api/upload",
+     *      operationId="indexxx",
+     *      tags={"Media"},
+     *      summary="Get media",
+     *      description="Get media",
+     * security={{"bearerAuth": {{}}}},
+     *
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage des medias."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function index()
     {
         return Media::all();
     }
 
-    /**
-     * Store a newly created resource in storage.
+     /**
+     * @OA\Post(
+     *      path="/api/upload",
+     *      operationId="storeee",
+     *      tags={"Media"},
+     *      summary="upload files",
+     *      description="upload files",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="Telechargement des fichiers",
+     * 
+     *
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *      @OA\Property(property="image", type="file", format="image", example="https://image.png", description ="image de votre challenge"),   
+     *      @OA\Property(property="video", type="file", format="video", example="https://video.mp4", description ="video de votre challenge"),   
+     *      @OA\Property(property="audio", type="file", format="audio", example="https://audio.mp3", description ="audio de votre challenge"),   
+     *      @OA\Property(property="texte", type="string", format="string", example="skdjfdkjf soidjfd sidj", description ="votre texte d'evennement"),   
+     *  )
+     *        ),
+     *      ),
+     *    @OA\Response(
+     *      response=200,
+     *      description="success",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="imagePath", type="string", example="uploads/images/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"),
+     *      @OA\Property(property="videoPath", type="string", example="uploads/videos/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"),
+     *      @OA\Property(property="audioPath", type="string", example="uploads/audios/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"),
+     * @OA\Property(property="texte", type="string", example="ejdwiej oidjidhf uhfdjfv ",
+     *
+     *        
+     * )
+     *     ),
+     *    @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function store(StoreMediaRequest $request)
     {

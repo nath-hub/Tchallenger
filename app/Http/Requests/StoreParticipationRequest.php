@@ -23,12 +23,9 @@ class StoreParticipationRequest extends FormRequest
      */
     public function rules()
     {
-        return [
+        return [ 
             "title" => "required|string",
             "description" => "required|string",
-            "url_video" => "string",
-            "url_audio" => "string",
-            "url_image" => "string",
             "likes" => "string",
             "vues" => "string",
             "shares" => "string",

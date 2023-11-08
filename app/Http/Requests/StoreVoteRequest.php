@@ -22,7 +22,7 @@ class StoreVoteRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'participation_id'=> 'required|integer'
+            'participation_id'=> 'required|integer' 
         ];
     }
 }

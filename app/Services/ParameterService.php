@@ -14,10 +14,18 @@ class ParameterService
 
         $user = Auth::user();
 
-        $input["user_id"]= $user->id;
-        
-        $state = Parameter::create($input);
+        $exist = Parameter::where("user_id", $user->id)->first();
 
+        if (isset($exist)) {
+
+            $state = $exist->update($input);
+
+        } else {
+
+            $input["user_id"] = $user->id;
+
+            $state = Parameter::create($input);
+        }
         return $state;
     }
 

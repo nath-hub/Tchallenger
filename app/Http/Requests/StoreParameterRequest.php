@@ -31,6 +31,6 @@ class StoreParameterRequest extends FormRequest
             "notif_publication",
             "notif_message",
             "langue",
-        ];
+        ]; 
     }
 }

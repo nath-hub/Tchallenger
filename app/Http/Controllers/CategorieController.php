@@ -9,10 +9,41 @@ use App\Services\Facades\CategorieFacade as CategorieService;
 
 class CategorieController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+     /**
+     * @OA\Get(
+     *     path="/api/categories",
+     *      operationId="indexx",
+     *      tags={"Categorie"},
+     *      summary="Get Categorie",
+     *      description="Get Categorie",
      *
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage de tous les categories."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function index()
     {
@@ -20,11 +51,54 @@ class CategorieController extends Controller
         
     }
 
-    /**
-     * Store a newly created resource in storage.
+   /**
+     * @OA\Post(
+     *      path="/api/categories",
+     *      operationId="storee",
+     *      tags={"Categorie"},
+     *      summary="Register new Categorie",
+     *      description="Register new Categorie",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="Enregistrement d'un nouvel Categorie",
      *
-     * @param  \App\Http\Requests\StoreCategorieRequest  $request
-     * @return \Illuminate\Http\Response
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *       @OA\Property(property="name", type="string", format="string", example="shopping", description ="votre nom de categorie"),
+    
+         
+     *  )
+     *        ),
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="Categorie bien Creer."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function store(StoreCategorieRequest $request)
     {
@@ -38,11 +112,51 @@ class CategorieController extends Controller
         return $data;
     }
 
-    /**
-     * Display the specified resource.
+     /**
+     * @OA\Get(
+     *     path="/api/categories/{id}",
+     *      operationId="showw",
+     *      tags={"Categorie"},
+     *      summary="Get categorie",
+     *      description="Get categorie",
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "categorie id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
      *
-     * @param  \App\Models\Categorie  $categorie
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'une categorie."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function show($categorie)
     {
@@ -58,11 +172,50 @@ class CategorieController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/categories/{id}",
+     *      operationId="updatee",
+     *      tags={"Categorie"},
+     *      summary="Update categorie",
+     *      description="Update categorie",
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "categorie id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
      *
-     * @param  \App\Http\Requests\UpdateCategorieRequest  $request
-     * @param  \App\Models\Categorie  $categorie
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="integer", example="1"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function update(UpdateCategorieRequest $request, Categorie $categorie)
     {
@@ -78,11 +231,52 @@ class CategorieController extends Controller
         ]);
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\Categorie  $categorie
-     * @return string
+     /**
+     * @OA\Delete(
+     *      path="/api/categories/{id}",
+     *      operationId="destroyy",
+     *      tags={"Categorie"},
+     *      summary="delete categorie",
+     *      description="delete categorie",
+     * 
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "categorie id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *      
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="suppression de la categorie reussis."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function destroy(Categorie $categorie)
     {

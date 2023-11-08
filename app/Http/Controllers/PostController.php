@@ -12,7 +12,40 @@ use Illuminate\Support\Facades\Auth;
 class PostController extends Controller
 {
     /**
-     * Display a listing of the resource.
+     * @OA\Get(
+     *     path="/api/posts",
+     *      operationId="indexxxxxx",
+     *      tags={"Post"},
+     *      summary="Get Post",
+     *      description="Get Post",
+     *
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'un Post."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function index():Paginator
     {
@@ -43,8 +76,71 @@ class PostController extends Controller
             ]);
     }
 
-    /**
-     * Store a newly created resource in storage.
+     /**
+     * @OA\Post(
+     *      path="/api/posts",
+     *      operationId="storeeeeee",
+     *      tags={"Post"},
+     *      summary="Register of post",
+     *      description="Register of post",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="Enregistrement d'un nouveau post",
+     *
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+      *       @OA\Property(property="title", type="string", format="string", example="laporte", description ="votre titre"),
+     *       @OA\Property(property="description", type="string", format="string", example="kdjfkd  kcvng", description ="votre description"),
+     *      @OA\Property(property="start_date", type="date", format="date", example="2023-11-06 09:57:50", description ="votre date de debut"),
+     *      @OA\Property(property="end_date", type="date", format="date", example="2023-11-06 09:57:50", description ="votre date de fin"),
+     *      @OA\Property(property="type", type="string", format="string", example="CHALLENGE/PUBLICATION", description ="votre type"),
+     *      @OA\Property(property="lieu", type="string", format="string", example="paris", description ="votre lieu"),
+     *      @OA\Property(property="price", type="integer", format="integer", example="8", description ="votre price"),
+     *      @OA\Property(property="private", type="boolean", format="string", example="1", description ="etant de votre post"),
+     *       @OA\Property(property="likes", type="integer", format="1", example="1", description ="nombre de likes"),
+     *       @OA\Property(property="vues", type="integer", format="1", example="1", description ="nombre de vues"),
+     *       @OA\Property(property="shares", type="integer", format="1", example="1", description ="nombre de shares"),
+     *       @OA\Property(property="comments", type="string", format="string", example="comments", description ="votre comments"),
+     *       @OA\Property(property="categorie_id", type="integer", format="integer", example="3", description ="votre categorie_id"),
+     *       @OA\Property(property="media_id", type="integer", format="integer", example="123456", description ="votre media_id"),
+         
+     *  )
+     *        ),
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="Post bien Creer."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function store(StorePostRequest $request)
     {
@@ -62,8 +158,51 @@ class PostController extends Controller
         ]);
     }
 
-    /**
-     * Display the specified resource.
+      /**
+     * @OA\Get(
+     *     path="/api/posts/{id}",
+     *      operationId="showwwwww",
+     *      tags={"Post"},
+     *      summary="Get post",
+     *      description="Get post",
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "post id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'un post."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function show(Post $post)
     {
@@ -97,7 +236,55 @@ class PostController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/posts/{id}",
+     *      operationId="updateeeeeee",
+     *      tags={"Post"},
+     *      summary="Update post",
+     *      description="Update post",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "post id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="reponse de la modification"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function update(UpdatePostRequest $requests, Post $post)
     {
@@ -112,8 +299,57 @@ class PostController extends Controller
         return $data;
     }
 
-    /**
-     * Remove the specified resource from storage.
+      /**
+     * @OA\Delete(
+     *      path="/api/posts/{id}",
+     *      operationId="destroyyyyyyy",
+     *      tags={"Post"},
+     *      summary="delete post",
+     *      description="delete post",
+     * security={{"bearerAuth": {{}}}},
+     * 
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "post id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *      
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="suppression d'un post."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     *  * @OA\response(
+     *      response=401,
+     * description="Unauthorized"
+     * ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function destroy(Post $post)
     {   

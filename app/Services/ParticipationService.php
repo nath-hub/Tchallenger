@@ -9,17 +9,15 @@ use Illuminate\Support\Facades\Auth;
 class ParticipationService
 {
 
-    public function store($input)
+    public function store($input, $user)
     {
+        $input["user_id"] = $user->id;
 
         $state = Participation::create($input);
 
         return $state;
     }
 
-    public function vote(){
-        
-    }
 
     public function view($participation)
     {

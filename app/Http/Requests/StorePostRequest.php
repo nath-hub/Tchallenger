@@ -30,11 +30,8 @@ class StorePostRequest extends FormRequest
             "end_date" => "date",
             "type" => "string",
             "lieu" => "string",
-            "price" => "integer",
+            "price" => "integer", 
             "private" => "string",
-            "url_video" => "string",
-            "url_audio" => "string",
-            "url_image" => "string",
             "categorie_id" => "integer",
             "media_id"=> "integer",
         ];

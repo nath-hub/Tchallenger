@@ -11,10 +11,41 @@ use Illuminate\Support\Carbon;
 
 class UserController extends Controller
 {
-    /**
-     * Display a listing of the resource.
+     /**
+     * @OA\Get(
+     *     path="/api/users",
+     *      operationId="index",
+     *      tags={"User"},
+     *      summary="Get User",
+     *      description="Get User",
      *
-     * @return string 
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'un utilisateur."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function index()
     {
@@ -36,24 +67,13 @@ class UserController extends Controller
      *            mediaType="multipart/form-data",
      *            @OA\Schema(
      *               type="object",
-     *       @OA\Property(property="first_name", type="string", format="string", example="laporte", description ="votre nom"),
-     *       @OA\Property(property="last_name", type="string", format="string", example="jean", description ="votre prenom"),
-     *       @OA\Property(property="country", type="string", format="string", example="france", description ="votre pays"),
-     *       @OA\Property(property="town", type="string", format="string", example="paris", description ="votre ville"),
-     *       @OA\Property(property="type_account", type="string", format="string", example="INDIVIDUAL", description ="votre type de compte"),
+     *       @OA\Property(property="login", type="string", format="string", example="laporte", description ="votre login"),
+     *       @OA\Property(property="avatar", type="string", format="string", example="https://kdjfkd.png", description ="votre photo"),
+     *       @OA\Property(property="active", type="boolean", format="1", example="1", description ="l'etat de votre compte"),
      *       @OA\Property(property="email", type="string", format="string", example="examples@gmail.com", description ="votre email"),
      *       @OA\Property(property="password", type="string", format="string", example="sdms", description ="votre password"),
      *       @OA\Property(property="phone", type="string", format="string", example="123456", description ="votre telephone"),
-     *       @OA\Property(property="role", type="string", format="string", example="USER", description ="votre role"),
-     *       @OA\Property(property="state", type="string", format="string", example="ACTIF", description ="votre etat"),
-     *       @OA\Property(property="birth_date", type="date", format="string", example="2023-09-11", description ="votre date de naissance"),            
-     *       @OA\Property(property="name_enterprise", type="string", format="string", example="santa lucia", description ="nom de votreentreprise"), 
-     *       @OA\Property(property="siren", type="string", format="string", example="93984rhrfbdfn", description ="votre siren"),
-     *       @OA\Property(property="commercial_register", type="string", format="string", example="RNNKNKD323", description ="votre RN"),  
-     *       @OA\Property(property="address", type="string", format="string", example="54 rue saint augustin", description ="votre adresse"),
-     *       @OA\Property(property="web_site", type="string", format="string", example="exemple.com", description ="votre site web"), 
-     *       @OA\Property(property="description", type="string", format="string", example="information sur l'entreprise", description ="votre description"),
-     *      
+         
      *  )
      *        ),
      *      ),
@@ -100,10 +120,50 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * @OA\Get(
+     *     path="/api/users/{id}",
+     *      operationId="show",
+     *      tags={"User"},
+     *      summary="Get User",
+     *      description="Get User",
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "user id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
      *
-     * @param  \App\Models\User  $user
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'un utilisateur."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function show(User $user)
     {
@@ -118,15 +178,55 @@ class UserController extends Controller
     }
 
     /**
-     * Update the specified resource in storage.
+     * @OA\Put(
+     *     path="/api/users/{id}",
+     *      operationId="update",
+     *      tags={"User"},
+     *      summary="Update User",
+     *      description="Update User",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "user id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
      *
-     * @param  \App\Http\Requests\UpdateUserRequest  $request
-     * @param  \App\Models\User  $user
-     * @return string
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="reponse de la modification"),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function update(UpdateUserRequest $request, User $user)
     {
-        //$this->authorize('update', $user);
+        $this->authorize('update', $user);
 
         if ($user->email_verified_at === null) {
             return response()->json([
@@ -147,7 +247,53 @@ class UserController extends Controller
         }
     }
 
-
+ /**
+     * @OA\Post(
+     *      path="/api/send-email",
+     *      operationId="sendEmail",
+     *      tags={"User"},
+     *      summary="verification",
+     *      description="send email",
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="Envoie du mail de verification a un nouvel utilisateur",
+     *
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *      @OA\Property(property="email", type="string", format="string", example="examples@gmail.com", description ="votre email"),  
+     *  )
+     *        ),
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="mail bien envoyer."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function sendEmail(UpdateUserRequest $request, User $user)
     {
         //permet de recuperer l'adresse mail de l'utilisateur pour verifier si le compte 
@@ -165,6 +311,53 @@ class UserController extends Controller
         ]);
     }
 
+
+     /**
+     * @OA\Get(
+     *     path="/api/update-verification-email/{id}",
+     *      operationId="verification",
+     *      tags={"User"},
+     *      summary="Get User",
+     *      description="Get User",
+     *      @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "user id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="affichage d'un utilisateur."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function verification(User $user)
     {
 
@@ -177,6 +370,57 @@ class UserController extends Controller
         return view('notification');
     }
 
+
+    /**
+     * @OA\Post(
+     *      path="/api/users/avatar",
+     *      operationId="uploadAvatar",
+     *      tags={"User"},
+     *      summary="upload avatar file",
+     *      description="upload avatar file",
+     * security={{"bearerAuth": {{}}}},
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="Telechargement de la photo de profil utilisateur",
+     *
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *      @OA\Property(property="avatar", type="file", format="image", example="https://image.png", description ="votre photos de profil"),   
+     *  )
+     *        ),
+     *      ),
+     *    @OA\Response(
+     *      response=200,
+     *      description="success",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="avatar_path", type="string", example="users/avatar/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"),
+     * @OA\Property(property="avatar_url", type="string", example="http://tchallenger.test/users/avatar/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg",
+     *
+     *        
+     * )
+     *     ),
+     *    @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function uploadAvatar(StoreUserRequest $request, User $user)
     {
         $this->authorize('uploadAvatar', $user);
@@ -186,7 +430,63 @@ class UserController extends Controller
         return response()->json($data, 200);
     }
 
-
+/**
+     * @OA\Put(
+     *      path="/api/users/update-password/{id}",
+     *      operationId="updatePassword",
+     *      tags={"User"},
+     *      summary="update password",
+     *      description="update password",
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "user id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *      @OA\RequestBody(
+     *      required=true,
+     *      description="modification du mot de passe d'un utilisateur",
+     *
+     *      @OA\MediaType(
+     *            mediaType="multipart/form-data",
+     *            @OA\Schema(
+     *               type="object",
+     *    @OA\Property(property="email", type="string", format="string", example="examples@gmail.com", description ="votre email"),
+     *  )
+     *        ),
+     *      ),
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="modification du mot de passe."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
+     */
     public function updatePassword(UpdateUserRequest $request, User $user)
     {
 
@@ -204,11 +504,53 @@ class UserController extends Controller
         }
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\User  $user
-     * @return string
+      /**
+     * @OA\Delete(
+     *      path="/api/users/{id}",
+     *      operationId="destroy",
+     *      tags={"User"},
+     *      summary="delete user",
+     *      description="delete user",
+     * security={{"bearerAuth": {{}}}},
+     * 
+     *   @OA\Parameter(
+     *      name="id",
+     *      in="path",
+     *      required=true,
+     *      description= "user id",
+     *      example="10",
+     *      @OA\Schema(
+     *           type="integer"
+     *      )
+     * ),
+     *      
+     *       @OA\Response(
+     *      response=201,
+     *      description="Success response",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="200"),
+     *      @OA\Property(property="message", type="string", example="modification du mot de passe."),
+     *        )
+     *     ),
+     *        @OA\Response(
+     *      response=400,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="400"),
+     *      @OA\Property(property="message", type="string", example="Erreur lors du traitement de la demande")
+     *        )
+     *     ),
+     * @OA\Response(
+     *      response=500,
+     *      description="Bad Request",
+     *      @OA\JsonContent(
+     *      @OA\Property(property="status", type="number", example="500"),
+     *      @OA\Property(property="message", type="string", example="Erreur de connexion")
+     *        )
+     *     )
+     * )
+     *      
+     * )
      */
     public function destroy(User $user)
     {

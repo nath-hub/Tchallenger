@@ -170,6 +170,7 @@ return [
         App\Providers\RouteServiceProvider::class,
         Laravel\Socialite\SocialiteServiceProvider::class,
         ProtoneMedia\LaravelFFMpeg\Support\ServiceProvider::class,
+        L5Swagger\L5SwaggerServiceProvider::class,
     ])->toArray(),
 
     /*

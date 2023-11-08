@@ -1,0 +1,3626 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Tchallenger",
+        "description": "",
+        "contact": {
+            "email": "nathalietaffot@gmail.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "http://www.apache.org/licenses/LICENSE-2.0.html"
+        },
+        "version": "1.0.0"
+    },
+    "paths": {
+        "/api/login": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login",
+                "description": "login",
+                "operationId": "login",
+                "requestBody": {
+                    "description": "connexion d'un utilisateur",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "votre email",
+                                        "type": "string",
+                                        "format": "email",
+                                        "example": "exmple@exemple.com"
+                                    },
+                                    "password": {
+                                        "description": "votre motde passe",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "jdjfk3237&$#"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Connexion effectuée"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/facebook/auth": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login with facebook",
+                "description": "login with facebook",
+                "operationId": "loginUsingFacebook",
+                "requestBody": {
+                    "description": "connexion d'un utilisateur avec facebook",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Connexion effectuée"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/google": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login with google",
+                "description": "login with google",
+                "operationId": "redirectToGoogle",
+                "requestBody": {
+                    "description": "connexion d'un utilisateur avec google",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Connexion effectuée"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/auth/twitter": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "login with twitter",
+                "description": "login with twitter",
+                "operationId": "twitterRedirect",
+                "requestBody": {
+                    "description": "connexion d'un utilisateur avec twitter",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Connexion effectuée"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/logout": {
+            "post": {
+                "tags": [
+                    "Auth"
+                ],
+                "summary": "logout of user",
+                "description": "logout",
+                "operationId": "logout",
+                "requestBody": {
+                    "description": "déconnexion d'un utilisateur",
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "deconnexion effectuée"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/categories": {
+            "get": {
+                "tags": [
+                    "Categorie"
+                ],
+                "summary": "Get Categorie",
+                "description": "Get Categorie",
+                "operationId": "indexx",
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage de tous les categories."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Categorie"
+                ],
+                "summary": "Register new Categorie",
+                "description": "Register new Categorie",
+                "operationId": "storee",
+                "requestBody": {
+                    "description": "Enregistrement d'un nouvel Categorie",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "name": {
+                                        "description": "votre nom de categorie",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "shopping"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Categorie bien Creer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/categories/{id}": {
+            "get": {
+                "tags": [
+                    "Categorie"
+                ],
+                "summary": "Get categorie",
+                "description": "Get categorie",
+                "operationId": "showw",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "categorie id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'une categorie."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Categorie"
+                ],
+                "summary": "Update categorie",
+                "description": "Update categorie",
+                "operationId": "updatee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "categorie id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "integer",
+                                            "example": "1"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "tags": [
+                    "Categorie"
+                ],
+                "summary": "delete categorie",
+                "description": "delete categorie",
+                "operationId": "destroyy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "categorie id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "suppression de la categorie reussis."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/upload": {
+            "get": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "Get media",
+                "description": "Get media",
+                "operationId": "indexxx",
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage des medias."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Media"
+                ],
+                "summary": "upload files",
+                "description": "upload files",
+                "operationId": "storeee",
+                "requestBody": {
+                    "description": "Telechargement des fichiers",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "image": {
+                                        "description": "image de votre challenge",
+                                        "type": "file",
+                                        "format": "image",
+                                        "example": "https://image.png"
+                                    },
+                                    "video": {
+                                        "description": "video de votre challenge",
+                                        "type": "file",
+                                        "format": "video",
+                                        "example": "https://video.mp4"
+                                    },
+                                    "audio": {
+                                        "description": "audio de votre challenge",
+                                        "type": "file",
+                                        "format": "audio",
+                                        "example": "https://audio.mp3"
+                                    },
+                                    "texte": {
+                                        "description": "votre texte d'evennement",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "skdjfdkjf soidjfd sidj"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "imagePath": {
+                                            "type": "string",
+                                            "example": "uploads/images/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"
+                                        },
+                                        "videoPath": {
+                                            "type": "string",
+                                            "example": "uploads/videos/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"
+                                        },
+                                        "audioPath": {
+                                            "type": "string",
+                                            "example": "uploads/audios/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"
+                                        },
+                                        "texte": {
+                                            "type": "string",
+                                            "example": "ejdwiej oidjidhf uhfdjfv "
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/parametres": {
+            "get": {
+                "tags": [
+                    "Parameter"
+                ],
+                "summary": "Get parameter",
+                "description": "Get parameter",
+                "operationId": "indexxxx",
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage des parameters."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            },
+            "post": {
+                "tags": [
+                    "Parameter"
+                ],
+                "summary": "create Parameter",
+                "description": "create Parameter",
+                "operationId": "storeeeee",
+                "requestBody": {
+                    "description": "Enregistrement d'un nouvel Parameter",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "color": {
+                                        "description": "votre login",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "laporte"
+                                    },
+                                    "notif_abonnement": {
+                                        "description": "notification abonnement",
+                                        "type": "boolean",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "notif_challenge": {
+                                        "description": "notification challenge",
+                                        "type": "boolean",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "notif_comment": {
+                                        "description": "notification comment",
+                                        "type": "boolean",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "notif_publication": {
+                                        "description": "notification publication",
+                                        "type": "boolean",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "notif_message": {
+                                        "description": "notification message",
+                                        "type": "boolean",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "langue": {
+                                        "description": "votre langue",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "fr"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Parametre bien Creer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/parametres/{id}": {
+            "get": {
+                "tags": [
+                    "Parameter"
+                ],
+                "summary": "Get parameter",
+                "description": "Get parameter",
+                "operationId": "showww",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "parameter id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'un parameter."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            },
+            "put": {
+                "tags": [
+                    "Parameter"
+                ],
+                "summary": "Update parameter",
+                "description": "Update parameter",
+                "operationId": "updateee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "parameter id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "reponse de la modification"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Parameter"
+                ],
+                "summary": "delete parameter",
+                "description": "delete parameter",
+                "operationId": "destroyyy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "parameter id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "suppression du parameter."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/participations": {
+            "get": {
+                "tags": [
+                    "Participation"
+                ],
+                "summary": "Get Participation",
+                "description": "Get Participation",
+                "operationId": "indexxxxx",
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage de tous les participation."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Participation"
+                ],
+                "summary": "Register of participation",
+                "description": "Register of participation",
+                "operationId": "storeeee",
+                "requestBody": {
+                    "description": "Enregistrement d'une nouvelle participation",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "votre titre",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "laporte"
+                                    },
+                                    "description": {
+                                        "description": "votre description",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "kdjfkd  kcvng"
+                                    },
+                                    "likes": {
+                                        "description": "nombre de likes",
+                                        "type": "integer",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "vues": {
+                                        "description": "nombre de vues",
+                                        "type": "integer",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "shares": {
+                                        "description": "nombre de shares",
+                                        "type": "integer",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "comments": {
+                                        "description": "votre comments",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "comments"
+                                    },
+                                    "post_id": {
+                                        "description": "votre post_id",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "3"
+                                    },
+                                    "media_id": {
+                                        "description": "votre media_id",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "participation bien Creer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/participations/{id}": {
+            "get": {
+                "tags": [
+                    "Participation"
+                ],
+                "summary": "Get participation",
+                "description": "Get participation",
+                "operationId": "showwww",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "participation id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'une participation."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Participation"
+                ],
+                "summary": "Update participation",
+                "description": "Update participation",
+                "operationId": "updateeee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "participation id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "reponse de la modification"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Participation"
+                ],
+                "summary": "delete participation",
+                "description": "delete participation",
+                "operationId": "destroyyyyy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "participation id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "suppression de la participation."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/posts": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get Post",
+                "description": "Get Post",
+                "operationId": "indexxxxxx",
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'un Post."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Register of post",
+                "description": "Register of post",
+                "operationId": "storeeeeee",
+                "requestBody": {
+                    "description": "Enregistrement d'un nouveau post",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "title": {
+                                        "description": "votre titre",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "laporte"
+                                    },
+                                    "description": {
+                                        "description": "votre description",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "kdjfkd  kcvng"
+                                    },
+                                    "start_date": {
+                                        "description": "votre date de debut",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-11-06 09:57:50"
+                                    },
+                                    "end_date": {
+                                        "description": "votre date de fin",
+                                        "type": "string",
+                                        "format": "date",
+                                        "example": "2023-11-06 09:57:50"
+                                    },
+                                    "type": {
+                                        "description": "votre type",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "CHALLENGE/PUBLICATION"
+                                    },
+                                    "lieu": {
+                                        "description": "votre lieu",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "paris"
+                                    },
+                                    "price": {
+                                        "description": "votre price",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "8"
+                                    },
+                                    "private": {
+                                        "description": "etant de votre post",
+                                        "type": "boolean",
+                                        "format": "string",
+                                        "example": "1"
+                                    },
+                                    "likes": {
+                                        "description": "nombre de likes",
+                                        "type": "integer",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "vues": {
+                                        "description": "nombre de vues",
+                                        "type": "integer",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "shares": {
+                                        "description": "nombre de shares",
+                                        "type": "integer",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "comments": {
+                                        "description": "votre comments",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "comments"
+                                    },
+                                    "categorie_id": {
+                                        "description": "votre categorie_id",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "3"
+                                    },
+                                    "media_id": {
+                                        "description": "votre media_id",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Post bien Creer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/posts/{id}": {
+            "get": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Get post",
+                "description": "Get post",
+                "operationId": "showwwwww",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "post id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'un post."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "Update post",
+                "description": "Update post",
+                "operationId": "updateeeeeee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "post id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "reponse de la modification"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "Post"
+                ],
+                "summary": "delete post",
+                "description": "delete post",
+                "operationId": "destroyyyyyyy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "post id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "suppression d'un post."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/users": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get User",
+                "description": "Get User",
+                "operationId": "index",
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'un utilisateur."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Register",
+                "description": "Register",
+                "operationId": "store",
+                "requestBody": {
+                    "description": "Enregistrement d'un nouvel utilisateur",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "login": {
+                                        "description": "votre login",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "laporte"
+                                    },
+                                    "avatar": {
+                                        "description": "votre photo",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "https://kdjfkd.png"
+                                    },
+                                    "active": {
+                                        "description": "l'etat de votre compte",
+                                        "type": "boolean",
+                                        "format": "1",
+                                        "example": "1"
+                                    },
+                                    "email": {
+                                        "description": "votre email",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "examples@gmail.com"
+                                    },
+                                    "password": {
+                                        "description": "votre password",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "sdms"
+                                    },
+                                    "phone": {
+                                        "description": "votre telephone",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "123456"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Utilisateur bien Creer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get User",
+                "description": "Get User",
+                "operationId": "show",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'un utilisateur."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Update User",
+                "description": "Update User",
+                "operationId": "update",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "reponse de la modification"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            },
+            "delete": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "delete user",
+                "description": "delete user",
+                "operationId": "destroy",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "modification du mot de passe."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/send-email": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "verification",
+                "description": "send email",
+                "operationId": "sendEmail",
+                "requestBody": {
+                    "description": "Envoie du mail de verification a un nouvel utilisateur",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "votre email",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "examples@gmail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "mail bien envoyer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/update-verification-email/{id}": {
+            "get": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "Get User",
+                "description": "Get User",
+                "operationId": "verification",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'un utilisateur."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/users/avatar": {
+            "post": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "upload avatar file",
+                "description": "upload avatar file",
+                "operationId": "uploadAvatar",
+                "requestBody": {
+                    "description": "Telechargement de la photo de profil utilisateur",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "avatar": {
+                                        "description": "votre photos de profil",
+                                        "type": "file",
+                                        "format": "image",
+                                        "example": "https://image.png"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "200": {
+                        "description": "success",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "avatar_path": {
+                                            "type": "string",
+                                            "example": "users/avatar/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"
+                                        },
+                                        "avatar_url": {
+                                            "type": "string",
+                                            "example": "http://tchallenger.test/users/avatar/ghRfjbiJHOvnMBaeerGTwCbYxV0WEnRuRPFod9N3.jpg"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/users/update-password/{id}": {
+            "put": {
+                "tags": [
+                    "User"
+                ],
+                "summary": "update password",
+                "description": "update password",
+                "operationId": "updatePassword",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "user id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "requestBody": {
+                    "description": "modification du mot de passe d'un utilisateur",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "email": {
+                                        "description": "votre email",
+                                        "type": "string",
+                                        "format": "string",
+                                        "example": "examples@gmail.com"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "modification du mot de passe."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        "/api/votes": {
+            "get": {
+                "tags": [
+                    "Vote"
+                ],
+                "summary": "Get Vote",
+                "description": "Get Vote",
+                "operationId": "indexxxxxxx",
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage des votes."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "post": {
+                "tags": [
+                    "Vote"
+                ],
+                "summary": "Register of vote",
+                "description": "Register of vote",
+                "operationId": "storeeeeeeee",
+                "requestBody": {
+                    "description": "Enregistrement d'un nouveau vote",
+                    "required": true,
+                    "content": {
+                        "multipart/form-data": {
+                            "schema": {
+                                "properties": {
+                                    "participation_id": {
+                                        "description": "identifiant de la participation en question",
+                                        "type": "integer",
+                                        "format": "integer",
+                                        "example": "1"
+                                    }
+                                },
+                                "type": "object"
+                            }
+                        }
+                    }
+                },
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Vote bien Creer ou vote bien supprimer."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        },
+        "/api/votes/{id}": {
+            "get": {
+                "tags": [
+                    "Vote"
+                ],
+                "summary": "Get vote",
+                "description": "Get vote",
+                "operationId": "showws",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "vote id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "affichage d'un vote."
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                }
+            },
+            "put": {
+                "tags": [
+                    "Vote"
+                ],
+                "summary": "Update Vote",
+                "description": "Update Vote",
+                "operationId": "updateeeeeeeeee",
+                "parameters": [
+                    {
+                        "name": "id",
+                        "in": "path",
+                        "description": "Vote id",
+                        "required": true,
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "example": "10"
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Success response",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "200"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "reponse de la modification"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "400"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur lors du traitement de la demande"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "500": {
+                        "description": "Bad Request",
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "properties": {
+                                        "status": {
+                                            "type": "number",
+                                            "example": "500"
+                                        },
+                                        "message": {
+                                            "type": "string",
+                                            "example": "Erreur de connexion"
+                                        }
+                                    },
+                                    "type": "object"
+                                }
+                            }
+                        }
+                    }
+                },
+                "security": [
+                    {
+                        "bearerAuth": [
+                            []
+                        ]
+                    }
+                ]
+            }
+        }
+    }
+}
