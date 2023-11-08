@@ -23,7 +23,7 @@ class ParameterController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/parametres",
+     *     path="/public/api/parametres",
      *      operationId="indexxxx",
      *      tags={"Parameter"},
      *      summary="Get parameter",
@@ -69,7 +69,7 @@ class ParameterController extends Controller
 
       /**
      * @OA\Post(
-     *      path="/api/parametres",
+     *      path="/public/api/parametres",
      *      operationId="storeeeee",
      *      tags={"Parameter"},
      *      summary="create Parameter",
@@ -139,7 +139,7 @@ class ParameterController extends Controller
 
    /**
      * @OA\Get(
-     *     path="/api/parametres/{id}",
+     *     path="/public/api/parametres/{id}",
      *      operationId="showww",
      *      tags={"Parameter"},
      *      summary="Get parameter",
@@ -204,7 +204,7 @@ class ParameterController extends Controller
 
        /**
      * @OA\Put(
-     *     path="/api/parametres/{id}",
+     *     path="/public/api/parametres/{id}",
      *      operationId="updateee",
      *      tags={"Parameter"},
      *      summary="Update parameter",
@@ -268,7 +268,7 @@ class ParameterController extends Controller
 
      /**
      * @OA\Delete(
-     *      path="/api/parametres/{id}",
+     *      path="/public/api/parametres/{id}",
      *      operationId="destroyyy",
      *      tags={"Parameter"},
      *      summary="delete parameter",

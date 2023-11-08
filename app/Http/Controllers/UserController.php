@@ -13,7 +13,7 @@ class UserController extends Controller
 {
      /**
      * @OA\Get(
-     *     path="/api/users",
+     *     path="/public/api/users",
      *      operationId="index",
      *      tags={"User"},
      *      summary="Get User",
@@ -54,7 +54,7 @@ class UserController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/users",
+     *      path="/public/api/users",
      *      operationId="store",
      *      tags={"User"},
      *      summary="Register",
@@ -121,7 +121,7 @@ class UserController extends Controller
 
     /**
      * @OA\Get(
-     *     path="/api/users/{id}",
+     *     path="/public/api/users/{id}",
      *      operationId="show",
      *      tags={"User"},
      *      summary="Get User",
@@ -179,7 +179,7 @@ class UserController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/users/{id}",
+     *     path="/public/api/users/{id}",
      *      operationId="update",
      *      tags={"User"},
      *      summary="Update User",
@@ -249,7 +249,7 @@ class UserController extends Controller
 
  /**
      * @OA\Post(
-     *      path="/api/send-email",
+     *      path="/public/api/send-email",
      *      operationId="sendEmail",
      *      tags={"User"},
      *      summary="verification",
@@ -314,7 +314,7 @@ class UserController extends Controller
 
      /**
      * @OA\Get(
-     *     path="/api/update-verification-email/{id}",
+     *     path="/public/api/update-verification-email/{id}",
      *      operationId="verification",
      *      tags={"User"},
      *      summary="Get User",
@@ -373,7 +373,7 @@ class UserController extends Controller
 
     /**
      * @OA\Post(
-     *      path="/api/users/avatar",
+     *      path="/public/api/users/avatar",
      *      operationId="uploadAvatar",
      *      tags={"User"},
      *      summary="upload avatar file",
@@ -432,7 +432,7 @@ class UserController extends Controller
 
 /**
      * @OA\Put(
-     *      path="/api/users/update-password/{id}",
+     *      path="/public/api/users/update-password/{id}",
      *      operationId="updatePassword",
      *      tags={"User"},
      *      summary="update password",
@@ -506,7 +506,7 @@ class UserController extends Controller
 
       /**
      * @OA\Delete(
-     *      path="/api/users/{id}",
+     *      path="/public/api/users/{id}",
      *      operationId="destroy",
      *      tags={"User"},
      *      summary="delete user",

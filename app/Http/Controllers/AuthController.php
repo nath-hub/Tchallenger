@@ -15,7 +15,7 @@ class AuthController extends Controller
 {
      /**
      * @OA\Post(
-     *      path="/api/login",
+     *      path="/public/api/login",
      *      operationId="login",
      *      tags={"Auth"},
      *      summary="login",
@@ -108,7 +108,7 @@ class AuthController extends Controller
 
  /**
      * @OA\Post(
-     *      path="/api/facebook/auth",
+     *      path="/public/api/facebook/auth",
      *      operationId="loginUsingFacebook",
      *      tags={"Auth"},
      *      summary="login with facebook",
@@ -198,7 +198,7 @@ class AuthController extends Controller
 
  /**
      * @OA\Post(
-     *      path="/api/auth/google",
+     *      path="/public/api/auth/google",
      *      operationId="redirectToGoogle",
      *      tags={"Auth"},
      *      summary="login with google",
@@ -290,7 +290,7 @@ class AuthController extends Controller
 
  /**
      * @OA\Post(
-     *      path="/api/auth/twitter",
+     *      path="/public/api/auth/twitter",
      *      operationId="twitterRedirect",
      *      tags={"Auth"},
      *      summary="login with twitter",
@@ -381,7 +381,7 @@ class AuthController extends Controller
 
      /**
      * @OA\Post(
-     *      path="/api/logout",
+     *      path="/public/api/logout",
      *      operationId="logout",
      *      tags={"Auth"},
      *      summary="logout of user",

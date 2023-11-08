@@ -12,7 +12,7 @@ class MediaController extends Controller
 {
      /**
      * @OA\Get(
-     *     path="/api/upload",
+     *     path="/public/api/upload",
      *      operationId="indexxx",
      *      tags={"Media"},
      *      summary="Get media",
@@ -58,7 +58,7 @@ class MediaController extends Controller
 
      /**
      * @OA\Post(
-     *      path="/api/upload",
+     *      path="/public/api/upload",
      *      operationId="storeee",
      *      tags={"Media"},
      *      summary="upload files",

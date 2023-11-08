@@ -14,7 +14,7 @@ class ParticipationController extends Controller
     
     /**
      * @OA\Get(
-     *     path="/api/participations",
+     *     path="/public/api/participations",
      *      operationId="indexxxxx",
      *      tags={"Participation"},
      *      summary="Get Participation",
@@ -84,7 +84,7 @@ class ParticipationController extends Controller
 
    /**
      * @OA\Post(
-     *      path="/api/participations",
+     *      path="/public/api/participations",
      *      operationId="storeeee",
      *      tags={"Participation"},
      *      summary="Register of participation",
@@ -161,7 +161,7 @@ class ParticipationController extends Controller
 
       /**
      * @OA\Get(
-     *     path="/api/participations/{id}",
+     *     path="/public/api/participations/{id}",
      *      operationId="showwww",
      *      tags={"Participation"},
      *      summary="Get participation",
@@ -241,7 +241,7 @@ class ParticipationController extends Controller
 
      /**
      * @OA\Put(
-     *     path="/api/participations/{id}",
+     *     path="/public/api/participations/{id}",
      *      operationId="updateeee",
      *      tags={"Participation"},
      *      summary="Update participation",
@@ -318,7 +318,7 @@ class ParticipationController extends Controller
 
        /**
      * @OA\Delete(
-     *      path="/api/participations/{id}",
+     *      path="/public/api/participations/{id}",
      *      operationId="destroyyyyy",
      *      tags={"Participation"},
      *      summary="delete participation",

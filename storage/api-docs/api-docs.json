@@ -13,7 +13,7 @@
         "version": "1.0.0"
     },
     "paths": {
-        "/api/login": {
+        "/public/api/login": {
             "post": {
                 "tags": [
                     "Auth"
@@ -110,7 +110,7 @@
                 }
             }
         },
-        "/api/facebook/auth": {
+        "/public/api/facebook/auth": {
             "post": {
                 "tags": [
                     "Auth"
@@ -186,7 +186,7 @@
                 }
             }
         },
-        "/api/auth/google": {
+        "/public/api/auth/google": {
             "post": {
                 "tags": [
                     "Auth"
@@ -262,7 +262,7 @@
                 }
             }
         },
-        "/api/auth/twitter": {
+        "/public/api/auth/twitter": {
             "post": {
                 "tags": [
                     "Auth"
@@ -338,7 +338,7 @@
                 }
             }
         },
-        "/api/logout": {
+        "/public/api/logout": {
             "post": {
                 "tags": [
                     "Auth"
@@ -414,7 +414,7 @@
                 }
             }
         },
-        "/api/categories": {
+        "/public/api/categories": {
             "get": {
                 "tags": [
                     "Categorie"
@@ -575,7 +575,7 @@
                 }
             }
         },
-        "/api/categories/{id}": {
+        "/public/public/api/categories/{id}": {
             "get": {
                 "tags": [
                     "Categorie"
@@ -657,7 +657,9 @@
                         }
                     }
                 }
-            },
+            }
+        },
+        "/public/api/categories/{id}": {
             "put": {
                 "tags": [
                     "Categorie"
@@ -823,7 +825,7 @@
                 }
             }
         },
-        "/api/upload": {
+        "/public/api/upload": {
             "get": {
                 "tags": [
                     "Media"
@@ -987,7 +989,7 @@
                 ]
             }
         },
-        "/api/parametres": {
+        "/public/api/parametres": {
             "get": {
                 "tags": [
                     "Parameter"
@@ -1204,7 +1206,7 @@
                 ]
             }
         },
-        "/api/parametres/{id}": {
+        "/public/api/parametres/{id}": {
             "get": {
                 "tags": [
                     "Parameter"
@@ -1482,7 +1484,7 @@
                 ]
             }
         },
-        "/api/participations": {
+        "/public/api/participations": {
             "get": {
                 "tags": [
                     "Participation"
@@ -1698,7 +1700,7 @@
                 ]
             }
         },
-        "/api/participations/{id}": {
+        "/public/api/participations/{id}": {
             "get": {
                 "tags": [
                     "Participation"
@@ -1969,7 +1971,7 @@
                 ]
             }
         },
-        "/api/posts": {
+        "/public/api/posts": {
             "get": {
                 "tags": [
                     "Post"
@@ -2218,7 +2220,7 @@
                 ]
             }
         },
-        "/api/posts/{id}": {
+        "/public/api/posts/{id}": {
             "get": {
                 "tags": [
                     "Post"
@@ -2486,7 +2488,7 @@
                 ]
             }
         },
-        "/api/users": {
+        "/public/api/users": {
             "get": {
                 "tags": [
                     "User"
@@ -2677,7 +2679,7 @@
                 }
             }
         },
-        "/api/users/{id}": {
+        "/public/api/users/{id}": {
             "get": {
                 "tags": [
                     "User"
@@ -2939,7 +2941,7 @@
                 ]
             }
         },
-        "/api/send-email": {
+        "/public/api/send-email": {
             "post": {
                 "tags": [
                     "User"
@@ -3030,7 +3032,7 @@
                 }
             }
         },
-        "/api/update-verification-email/{id}": {
+        "/public/api/update-verification-email/{id}": {
             "get": {
                 "tags": [
                     "User"
@@ -3114,7 +3116,7 @@
                 }
             }
         },
-        "/api/users/avatar": {
+        "/public/api/users/avatar": {
             "post": {
                 "tags": [
                     "User"
@@ -3172,7 +3174,7 @@
                 ]
             }
         },
-        "/api/users/update-password/{id}": {
+        "/public/api/users/update-password/{id}": {
             "put": {
                 "tags": [
                     "User"
@@ -3275,7 +3277,7 @@
                 }
             }
         },
-        "/api/votes": {
+        "/public/api/votes": {
             "get": {
                 "tags": [
                     "Vote"
@@ -3446,7 +3448,7 @@
                 ]
             }
         },
-        "/api/votes/{id}": {
+        "/public/api/votes/{id}": {
             "get": {
                 "tags": [
                     "Vote"

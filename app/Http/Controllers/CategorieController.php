@@ -11,7 +11,7 @@ class CategorieController extends Controller
 {
      /**
      * @OA\Get(
-     *     path="/api/categories",
+     *     path="/public/api/categories",
      *      operationId="indexx",
      *      tags={"Categorie"},
      *      summary="Get Categorie",
@@ -53,7 +53,7 @@ class CategorieController extends Controller
 
    /**
      * @OA\Post(
-     *      path="/api/categories",
+     *      path="/public/api/categories",
      *      operationId="storee",
      *      tags={"Categorie"},
      *      summary="Register new Categorie",
@@ -114,7 +114,7 @@ class CategorieController extends Controller
 
      /**
      * @OA\Get(
-     *     path="/api/categories/{id}",
+     *     path="/public/public/api/categories/{id}",
      *      operationId="showw",
      *      tags={"Categorie"},
      *      summary="Get categorie",
@@ -173,7 +173,7 @@ class CategorieController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/categories/{id}",
+     *     path="/public/api/categories/{id}",
      *      operationId="updatee",
      *      tags={"Categorie"},
      *      summary="Update categorie",
@@ -233,7 +233,7 @@ class CategorieController extends Controller
 
      /**
      * @OA\Delete(
-     *      path="/api/categories/{id}",
+     *      path="/public/api/categories/{id}",
      *      operationId="destroyy",
      *      tags={"Categorie"},
      *      summary="delete categorie",

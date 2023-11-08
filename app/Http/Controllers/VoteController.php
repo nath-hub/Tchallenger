@@ -13,7 +13,7 @@ class VoteController extends Controller
   
     /**
      * @OA\Get(
-     *     path="/api/votes",
+     *     path="/public/api/votes",
      *      operationId="indexxxxxxx",
      *      tags={"Vote"},
      *      summary="Get Vote",
@@ -57,7 +57,7 @@ class VoteController extends Controller
 
       /**
      * @OA\Post(
-     *      path="/api/votes",
+     *      path="/public/api/votes",
      *      operationId="storeeeeeeee",
      *      tags={"Vote"},
      *      summary="Register of vote",
@@ -123,7 +123,7 @@ class VoteController extends Controller
 
      /**
      * @OA\Get(
-     *     path="/api/votes/{id}",
+     *     path="/public/api/votes/{id}",
      *      operationId="showws",
      *      tags={"Vote"},
      *      summary="Get vote",
@@ -178,7 +178,7 @@ class VoteController extends Controller
 
       /**
      * @OA\Put(
-     *     path="/api/votes/{id}",
+     *     path="/public/api/votes/{id}",
      *      operationId="updateeeeeeeeee",
      *      tags={"Vote"},
      *      summary="Update Vote",

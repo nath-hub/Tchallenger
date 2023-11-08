@@ -13,7 +13,7 @@ class PostController extends Controller
 {
     /**
      * @OA\Get(
-     *     path="/api/posts",
+     *     path="/public/api/posts",
      *      operationId="indexxxxxx",
      *      tags={"Post"},
      *      summary="Get Post",
@@ -78,7 +78,7 @@ class PostController extends Controller
 
      /**
      * @OA\Post(
-     *      path="/api/posts",
+     *      path="/public/api/posts",
      *      operationId="storeeeeee",
      *      tags={"Post"},
      *      summary="Register of post",
@@ -160,7 +160,7 @@ class PostController extends Controller
 
       /**
      * @OA\Get(
-     *     path="/api/posts/{id}",
+     *     path="/public/api/posts/{id}",
      *      operationId="showwwwww",
      *      tags={"Post"},
      *      summary="Get post",
@@ -237,7 +237,7 @@ class PostController extends Controller
 
     /**
      * @OA\Put(
-     *     path="/api/posts/{id}",
+     *     path="/public/api/posts/{id}",
      *      operationId="updateeeeeee",
      *      tags={"Post"},
      *      summary="Update post",
@@ -301,7 +301,7 @@ class PostController extends Controller
 
       /**
      * @OA\Delete(
-     *      path="/api/posts/{id}",
+     *      path="/public/api/posts/{id}",
      *      operationId="destroyyyyyyy",
      *      tags={"Post"},
      *      summary="delete post",
